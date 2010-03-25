@@ -1,0 +1,169 @@
+.vimrc
+======
+
+
+python.vim
+==========
+
+Standard Vim
+============
+
+* Folds:
+* Macros:
+
+*Mark:
+m[a-z] -- mark current position and store in [a-z]
+`[a-z] -- goto mark [a-z]
+'[a-z] -- goto the start of the line containing mark [a-z]
+:marks -- display marks
+`` -- goto the last position before a jump
+`. -- goto the last position where an edit was made
+'( -- goto the start of the current sentence
+') -- goto the end of the current sentence
+'{ -- goto the start of the current paragraph
+'} -- goto the end of the current paragraph
+
+* Motions
+w -- beginning of next word
+W -- beginning of next whitespace delimited word (next WORD)
+b -- beginning of previous word
+B -- beginning of previous whitespace delimited word (previous WORD)
+e -- end of current word (or end of next if already there)
+E -- end of current whitespace delimited word (or end of next if already there)
+$ -- end of the current line
+0 -- beginning of the current line
+^ -- first non-blank character of the current line
+f{char} -- for the next {char} (up to the next {char})
+F{char} -- for the previous {char} (back to the previous {char})
+t{char} -- till the next {char} (up to the char to the left of the next {char})
+T{char} -- till the previous {char} (back to the char to the right of the previous {char})
+; -- repeat latest f, t, F, or T
+, -- repeat latest f, t, F, or T backwards
+( -- sentence backward
+) -- sentence forward
+{ -- paragraph backward
+} -- paragraph forward
+gg -- the beginning of the document
+G -- the end of the document
+{num}G -- the line {num}
+^F -- forward one screen
+^B -- backward one screen
+^U -- up half a screen 
+^D -- down half a screen
+/{pattern}[/] -- search forward for next match of {pattern}
+	n -- next result
+	N -- previous result
+?{pattern}[?] -- search backward for previous match of {pattern}
+	n -- next result
+	N -- previous result
+* -- search forwards for the word under the cursor
+# -- search backwards for the word under the cursor
+
+* Range:
+{number} -- a line number
+. -- the current line
+$ -- the last line in the file
+% -- the entire file
+* -- the Visual area
+'[a-z] -- position of mark [a-z]
+/{pattern}[/] -- the next line where {pattern} matches
+?{pattern}[?] the previous line where {pattern} matches
+\/ -- the next line where the previously used search {pattern} matches
+\? -- the previous line where the previously used search {pattern} matches
+\& -- the next line where the previously used substitute {pattern} matches
+
+* Substitution:
+:[range]s/pattern/string/[options] -- see "Range" for [range] and below for [options]
+[options]
+	c -- check, i.e. ask before substitution
+	e -- error, i.e. don't cough error messages if pattern is not found
+	g -- global, i.e. replace all occurences in the line
+	i -- ignore case
+	I -- do not ignore case
+	n -- no substitute, i.e. only return the number of successful matches
+
+* Text Objects:
+aw -- a word, i.e. including surrounding whitespace
+iw -- an inner word, i.e. a word, excluding surrounding whitspace
+aW -- a WORD, i.e. including surrounding whitespace
+iW -- an inner WORD, i.e.a WORD, excluding surrounding whitespace
+as -- a sentence, i.e. including surrounding whitespace
+is -- an inner sentence, i.e. a sentence, excluding surrounding whitespace
+ap -- a paragraph, i.e. including surrounding whitespace
+ip -- an inner paragraph, i.e. a paragraph, excluding surrounding whitespace
+a[
+a] -- a [] block, i.e. including surrounding []
+i[ 
+i] -- an inner [] block, i.e. excluding surrounding []
+a(, a), i(, i) -- same as above
+a{, a}, i{, i} -- same as above
+ab -- a block, i.e. a block of [] or (), including surrounding [] or ()
+ib -- an inner block, i.e. a block of [] or (), excluding surrounding [] or ()
+aB -- a BLOCK, i.e. a block of {}, including surrounding {}
+iB -- a BLOCK, i.e. a block of {}, excluding surrounding {}
+a"
+a'
+a` -- a quoted string, i.e. including surrounding whitespace
+i"
+i'
+i` -- an inner quoted string, i.e. excluding surrounding whitespace
+
+* Normal Mode:
+h,j,k,l -- move around
+i -- insert
+a -- append
+I -- insert at end of current line
+A -- append to end of current line
+o -- insert newline below
+O -- insert newline above
+r -- replace current character
+R -- replace mode
+x -- remove current character
+X -- remove previous character
+c{motion} -- change from current character to result of motion (see "Motions")
+C -- change to end of line
+yy -- yank line
+y{motion} -- yank from current character to result of motion (see "Motions")
+Y -- yank line
+dd -- delete line
+d{motion} -- delete from current character to result of motion (see "Motions")
+D -- delete to end of line
+u -- undo last change
+^R -- redo last change
+ZZ -- write and quit current buffer
+ZQ -- quit without saving changes
+
+* Commands:
+:w -- write current buffer
+:q -- quit current buffer
+:x -- write and quit current buffer
+:help {arg} -- documentation for {arg}
+:ea {N}[s|m|h] -- go earlier {N} times, seconds, minutes, or hours
+:lat {N}[s|m|h] -- go later {N} times, seconds, minutes, or hours
+:!{cmd} -- execute {cmd} in current shell
+:bufdo {cmd} -- execute {cmd} on all open buffers
+:reg -- display current registers
+:marks -- display current marks
+:{N} -- goto line {N}
+
+* Registers:
+"[a-z] -- accesses the register [a-z] and overwrites data on yank or delete
+"[A-Z] -- accesses the register [a-z] and appends data on yank or delete
+:reg -- display current registers
+
+* Visual Mode:
+v -- visual mode
+V -- visual line mode
+^V -- visual block mode
+d -- delete selection
+y -- copy selection
+p -- paste over selection
+I -- block insert
+A -- block append
+o -- go to the other end of highlighted text
+~ -- switch case
+c -- change
+< -- shift left
+> -- shift right
+! -- filter through external command
+
