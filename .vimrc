@@ -8,6 +8,8 @@ filetype plugin indent on
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+set smartindent
+set expandtab
 
 " Set wrap on and end at full words
 set wrap
