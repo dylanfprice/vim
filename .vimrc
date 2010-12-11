@@ -1,4 +1,5 @@
 " Turn on plugins
+syntax on
 filetype plugin indent on
 
 " Change colorscheme
@@ -17,3 +18,7 @@ set linebreak
 
 " Map <Ctrl>-F to <Esc>
 imap  <Esc>
+
+" Settings for VimClojure
+let g:clj_highlight_builtins=1 "Highlight
+let g:clj_paren_rainbow=1 "Rainbow parentheses
