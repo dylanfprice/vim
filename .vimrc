@@ -16,9 +16,6 @@ set expandtab
 set wrap
 set linebreak
 
-" Set line width to be 80
-set tw=80
-
 " Map <Ctrl>-F to <Esc>
 imap  <Esc>
 
