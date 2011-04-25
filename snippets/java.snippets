@@ -61,7 +61,11 @@ snippet cs
 snippet tc
 	public class ${1:`Filename()`} extends ${2:TestCase}
 snippet t
-	public void test${1:Name}() throws Exception ${2}
+	@Test
+	public void test${1:Name}()
+	{
+		${2}
+	}
 snippet cl
 	class ${1:`Filename("", "untitled")`} ${2}
 snippet in
@@ -71,8 +75,10 @@ snippet m
 snippet v
 	${1:String} ${2:var}${3: = null}${4};${5}
 snippet co
-	static public final ${1:String} ${2:var} = ${3};${4}
+	public static final ${1:String} ${2:var} = ${3};${4}
+snippet pco
+	private static final ${1:String} ${2:var} = ${3};${4}
 snippet cos
-	static public final String ${1:var} = "${2}";${3}
+	public static final String ${1:var} = "${2}";${3}
 snippet as
 	assert ${1:test} : "${2:Failure message}";${3}
