@@ -27,3 +27,8 @@ let g:clj_paren_rainbow=1 "Rainbow parentheses
 if has("autocmd")
   autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 endif 
+
+" Automatically save and load folds
+au BufWinLeave * silent! mkview
+au BufWinEnter * silent! loadview
+
