@@ -13,8 +13,8 @@ set complete+=k~/.vim/syntax/python.vim isk+=.,(
 " Pydiction complete-dict location
 let g:pydiction_location="~/.vim/pydiction-1.2/complete-dict"
 
-" Execute file being edited with <Shift> + e:
-map <buffer> <S-e> :w<CR>:!/usr/bin/env python % <CR>
+" Execute file being edited with \e:
+map <buffer> \e :w<CR>:!/usr/bin/env python % <CR>
 
 " Debugging stuff
 " TODO
