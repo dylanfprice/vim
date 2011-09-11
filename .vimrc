@@ -22,6 +22,7 @@ imap  <Esc>
 " Settings for VimClojure
 let vimclojure#HighlightBuiltins = 1
 let vimclojure#ParenRainbow = 1
+let vimclojure#DynamicHighlighting = 1
 
 " Automatically save and load folds
 au BufWinLeave * silent! mkview
@@ -50,6 +51,8 @@ set wildmode=list:longest
 " Ignore case on / searches, but not on * searches
 set ignorecase 
 set smartcase
+" Un-highlight highlighted words
+nmap <silent> <leader>n :silent :nohlsearch<CR>
 
 " Set the terminal title
 set title
