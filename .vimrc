@@ -23,6 +23,7 @@ imap  <Esc>
 let vimclojure#HighlightBuiltins = 1
 let vimclojure#ParenRainbow = 1
 let vimclojure#DynamicHighlighting = 1
+let vimclojure#WantNailgun = 1
 
 " Automatically save and load folds
 au BufWinLeave * silent! mkview
