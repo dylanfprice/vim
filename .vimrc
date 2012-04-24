@@ -5,10 +5,10 @@ filetype plugin indent on
 " Change colorscheme
 "colorscheme slate
 
-" Set tabs to be 4 spaces wide
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+" Set tabs to be 2 spaces wide
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set smartindent
 set expandtab
 
