@@ -1,3 +1,6 @@
+" Set up pathogen
+call pathogen#infect()
+
 " Turn on plugins
 syntax on
 filetype plugin indent on
@@ -18,12 +21,6 @@ set linebreak
 
 " Map <Ctrl>-F to <Esc>
 imap  <Esc>
-
-" Settings for VimClojure
-let vimclojure#HighlightBuiltins = 1
-let vimclojure#ParenRainbow = 1
-let vimclojure#DynamicHighlighting = 1
-let vimclojure#WantNailgun = 1
 
 " Automatically save and load folds
 au BufWinLeave * silent! mkview
@@ -52,6 +49,7 @@ set wildmode=list:longest
 " Ignore case on / searches, but not on * searches
 set ignorecase 
 set smartcase
+
 " Un-highlight highlighted words
 nmap <silent> <leader>n :silent :nohlsearch<CR>
 
@@ -90,3 +88,10 @@ highlight DiffDelete term=reverse cterm=bold ctermbg=red ctermfg=black
 
 " Set no backup files
 set nobackup
+
+" Settings for VimClojure
+let vimclojure#HighlightBuiltins = 1
+let vimclojure#ParenRainbow = 1
+let vimclojure#DynamicHighlighting = 1
+let vimclojure#WantNailgun = 1
+
