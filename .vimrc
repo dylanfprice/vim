@@ -6,7 +6,7 @@ syntax on
 filetype plugin indent on
 
 " Change colorscheme
-colorscheme solorized
+colorscheme solarized
 
 " Set tabs to be 2 spaces wide
 set tabstop=2
