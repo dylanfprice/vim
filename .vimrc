@@ -6,6 +6,7 @@ syntax on
 filetype plugin indent on
 
 " Change colorscheme
+set background=dark
 colorscheme solarized
 
 " Set tabs to be 2 spaces wide
@@ -95,3 +96,13 @@ let vimclojure#ParenRainbow = 1
 let vimclojure#DynamicHighlighting = 1
 let vimclojure#WantNailgun = 1
 
+" See a TODO or FIXME list with ,td
+map <leader>td <Plug>TaskList
+
+" Move around window splits more efficiently
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+" Python settings see ftplugin/python.vim
