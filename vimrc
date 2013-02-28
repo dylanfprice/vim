@@ -6,7 +6,7 @@ syntax on
 filetype plugin indent on
 
 " Change colorscheme
-set background=dark
+set background=light
 colorscheme solarized
 
 " Set tabs to be 2 spaces wide
@@ -106,3 +106,9 @@ map <c-l> <c-w>l
 map <c-h> <c-w>h
 
 " Python settings see ftplugin/python.vim
+
+" backupcopy                                                                     
+"    "yes"   make a copy of the file and overwrite the original one             
+"    "no"    rename the file and write a new one                                
+"    "    "auto"  one of the previous, what works best                               
+:set backupcopy=yes
