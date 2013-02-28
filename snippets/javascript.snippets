@@ -1,4 +1,5 @@
-snippet test
-	var test_${1:name} = function() {
-		${2:fail("TODO");}
-	};
+snippet it
+	it('${1:behavior}', function() {
+		${2:expect(true).toBe(false);}
+	});
+
