@@ -6,8 +6,9 @@ syntax on
 filetype plugin indent on
 
 " Change colorscheme
-set background=light
+set background=dark
 colorscheme solarized
+set t_Co=16
 
 " Set tabs to be 2 spaces wide
 set tabstop=2
