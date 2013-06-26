@@ -8,7 +8,7 @@ filetype plugin indent on
 " Change colorscheme
 set background=dark
 colorscheme solarized
-set t_Co=16
+set t_Co=256
 
 " Set tabs to be 2 spaces wide
 set tabstop=2
@@ -95,7 +95,7 @@ set nobackup
 let vimclojure#HighlightBuiltins = 1
 let vimclojure#ParenRainbow = 1
 let vimclojure#DynamicHighlighting = 1
-let vimclojure#WantNailgun = 1
+let vimclojure#WantNailgun = 0
 
 " See a TODO or FIXME list with ,td
 map <leader>td <Plug>TaskList
