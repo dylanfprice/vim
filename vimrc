@@ -96,6 +96,7 @@ let vimclojure#HighlightBuiltins = 1
 let vimclojure#ParenRainbow = 1
 let vimclojure#DynamicHighlighting = 1
 let vimclojure#WantNailgun = 0
+let vimclojure#NailgunClient = "/usr/bin/ng-nailgun"
 
 " See a TODO or FIXME list with ,td
 map <leader>td <Plug>TaskList
