@@ -10,10 +10,10 @@ set background=dark
 colorscheme solarized
 set t_Co=256
 
-" Set tabs to be 2 spaces wide
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+" Set tabs to be 4 spaces wide
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set smartindent
 set expandtab
 
@@ -108,6 +108,8 @@ map <c-l> <c-w>l
 map <c-h> <c-w>h
 
 " Python settings see ftplugin/python.vim
+let g:pymode_lint_checker = "pyflakes,pep8,mccabe"
+let g:pymode_lint_ignore = "E501"
 
 " backupcopy                                                                     
 "    "yes"   make a copy of the file and overwrite the original one             
