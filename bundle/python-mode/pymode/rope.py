@@ -151,7 +151,7 @@ def goto():
             return
 
         env.goto_file(
-            found_resource.path, cmd=ctx.options.get('goto_definition_cmd'))
+            found_resource.real_path, cmd=ctx.options.get('goto_definition_cmd'))
         env.goto_line(line)
 
 
@@ -327,7 +327,7 @@ def autoimport():
             _insert_import(word, modules[0], ctx)
 
         else:
-            module = env.user_input_choices('Wich module to import:', *modules)
+            module = env.user_input_choices('Which module to import:', *modules)
             _insert_import(word, module, ctx)
 
         return True

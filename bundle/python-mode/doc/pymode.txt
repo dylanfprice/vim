@@ -112,7 +112,7 @@ python buffers: >
 
 Setup pymode |quickfix| window
 
-                    *'g:pymode_quickfix_maxheght'* *'g:pymode_quickfix_minheight'*
+                    *'g:pymode_quickfix_maxheight'* *'g:pymode_quickfix_minheight'*
 >
     let g:pymode_quickfix_minheight = 3
     let g:pymode_quickfix_maxheight = 6
@@ -278,11 +278,11 @@ Check code on every save (if file has been modified)  *'g:pymode_lint_on_write'*
 
 Check code on every save (every)                    *'g:pymode_lint_unmodified'*
 >
-    let g:pymode_lint_unmodified = 1
+    let g:pymode_lint_unmodified = 0
 
 Check code when editting (onfly)                        *'g:pymode_lint_on_fly'*
 >
-    let g:pymode_lint_on_fly = 1
+    let g:pymode_lint_on_fly = 0
 
 Show error message if cursor placed at the error line  *'g:pymode_lint_message'*
 >
@@ -292,7 +292,7 @@ Default code checkers (you could set several)         *'g:pymode_lint_checkers'*
 >
     let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
 
-Values may be choosen from: `pylint`, `pep8`, `mccabe`, `pep257`, `pyflakes`.
+Values may be chosen from: `pylint`, `pep8`, `mccabe`, `pep257`, `pyflakes`.
 
 Skip errors and warnings                                *'g:pymode_lint_ignore'*
 E.g. "E501,W002", "E2,W" (Skip all Warnings and Errors startswith E2) and etc
@@ -468,7 +468,7 @@ Rename a current module/package ~
 
 Keymap for rename current module            *'g:pymode_rope_rename_module_bind'*
 >
-    let g:pymode_rope_rename_bind = '<C-c>rr'
+    let g:pymode_rope_rename_module_bind = '<C-c>r1r'
 
 
 Imports ~
