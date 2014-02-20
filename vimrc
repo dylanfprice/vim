@@ -1,5 +1,6 @@
 " Set up pathogen
 call pathogen#infect()
+call pathogen#helptags()
 
 " Turn on plugins
 syntax on
@@ -91,15 +92,8 @@ highlight DiffDelete term=reverse cterm=bold ctermbg=red ctermfg=black
 " Set no backup files
 set nobackup
 
-" Settings for VimClojure
-let vimclojure#HighlightBuiltins = 1
-let vimclojure#ParenRainbow = 1
-let vimclojure#DynamicHighlighting = 1
-let vimclojure#WantNailgun = 0
-let vimclojure#NailgunClient = "/usr/bin/ng-nailgun"
-
-" See a TODO or FIXME list with ,td
-map <leader>td <Plug>TaskList
+" close buffer without closing window
+map <leader>bd :bp<bar>sp<bar>bn<bar>bd<CR>
 
 " Move around window splits more efficiently
 map <c-j> <c-w>j
@@ -107,12 +101,43 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
-" Python settings see ftplugin/python.vim
-let g:pymode_lint_checker = "pyflakes,pep8,mccabe"
-let g:pymode_lint_ignore = "E501"
-
 " backupcopy                                                                     
 "    "yes"   make a copy of the file and overwrite the original one             
 "    "no"    rename the file and write a new one                                
 "    "    "auto"  one of the previous, what works best                               
 :set backupcopy=yes
+
+" do not show preview window during autocomplete
+set completeopt-=preview
+
+" CtrlP settings
+nmap ,b :CtrlPBuffer<CR>
+set wildignore+=*.pyc "ignore pyc files
+
+" Ack use ag
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" See a TODO or FIXME list with ,td
+map <leader>td <Plug>TaskList
+
+" NERDTree and Tagbar
+let g:tagbar_autofocus = 1
+let g:tagbar_sort = 0
+let g:tagbar_foldlevel = 0
+let g:tagbar_autoshowtag = 1
+map <leader>tn :NERDTreeToggle<CR>
+map <leader>tb :TagbarToggle<CR>
+
+" supertab
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+
+" strip trailing whitespace on file save
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
