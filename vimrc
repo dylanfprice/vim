@@ -114,8 +114,8 @@ set completeopt-=preview
 nmap ,b :CtrlPBuffer<CR>
 set wildignore+=*.pyc "ignore pyc files
 
-" Ack use ag
-let g:ackprg = 'ag --nogroup --nocolor --column'
+" Ag
+let g:agprg="ag --column --ignore migrations"
 
 " See a TODO or FIXME list with ,td
 map <leader>td <Plug>TaskList
