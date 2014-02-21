@@ -127,6 +127,7 @@ let g:tagbar_foldlevel = 0
 let g:tagbar_autoshowtag = 1
 map <leader>tn :NERDTreeToggle<CR>
 map <leader>tb :TagbarToggle<CR>
+let NERDTreeIgnore = ['\.pyc$']
 
 " supertab
 let g:SuperTabDefaultCompletionType = "context"
