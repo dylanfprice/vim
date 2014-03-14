@@ -22,11 +22,11 @@ let g:pymode_rope = 0
 "let g:pymode_rope_complete_on_dot = 0
 
 let g:pymode_lint = 1
-let g:pymode_lint_on_write = 0
+let g:pymode_lint_on_write = 1
 let g:pymode_lint_on_unmodified = 0
 let g:pymode_lint_on_fly = 0
-let g:pymode_lint_ignore='E262,E261,E302,E501,E1103,E1002,W0212,C0111,C0301,C1001,R0924'
-let g:pymode_lint_checkers = ['pylint', 'pep8', 'mccabe']
+let g:pymode_lint_ignore='E262,E261,E501,E1103,E1002,W0212,C0111,C0301,C1001,R0924'
+let g:pymode_lint_checkers = ['pyflakes', 'pep8'] "pylint
 nmap <leader>pl :PymodeLint<CR>
 
 " set up tags
