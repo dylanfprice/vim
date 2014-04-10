@@ -27,7 +27,7 @@ cd ~/.vim/bundle && git clone https://github.com/rking/ag.vim ag && vim +Helptag
 echo "Bundle 'rking/ag.vim'" >> ~/.vimrc && vim +BundleInstall
 ```
 
-### Configuation
+### Configuration
 
 You can specify a custom ag name and path in your .vimrc like so:
 
