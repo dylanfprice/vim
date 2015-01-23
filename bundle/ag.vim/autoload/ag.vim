@@ -1,8 +1,29 @@
 " NOTE: You must, of course, install ag / the_silver_searcher
 
+" FIXME: Delete deprecated options below on or after 15-7 (6 months from when they were changed) {{{
+
+if exists("g:agprg")
+  let g:ag_prg = g:agprg
+endif
+
+if exists("g:aghighlight")
+  let g:ag_highlight = g:aghighlight
+endif
+
+if exists("g:agformat")
+  let g:ag_format = g:agformat
+endif
+
+" }}} FIXME: Delete the deprecated options above on or after 15-7 (6 months from when they were changed)
+
 " Location of the ag utility
-if !exists("g:agprg")
-  let g:agprg="ag --column"
+if !exists("g:ag_prg")
+  " --vimgrep (consistent output we can parse) is available from version  0.25.0+
+  if split(system("ag --version"), "[ \n\r\t]")[2] =~ '\d\+.[2-9][5-9]\(.\d\+\)\?'
+    let g:ag_prg="ag --vimgrep"
+  else
+    let g:ag_prg="ag --column"
+  endif
 endif
 
 if !exists("g:ag_apply_qmappings")
@@ -25,7 +46,27 @@ if !exists("g:ag_mapping_message")
   let g:ag_mapping_message=1
 endif
 
+function! ag#AgBuffer(cmd, args)
+  let l:bufs = filter(range(1, bufnr('$')), 'buflisted(v:val)')
+  let l:files = []
+  for buf in l:bufs
+    let l:file = fnamemodify(bufname(buf), ':p')
+    if !isdirectory(l:file)
+      call add(l:files, l:file)
+    endif
+  endfor
+  call ag#Ag(a:cmd, a:args . ' ' . join(l:files, ' '))
+endfunction
+
 function! ag#Ag(cmd, args)
+  let l:ag_executable = get(split(g:ag_prg, " "), 0)
+
+  " Ensure that `ag` is installed
+  if !executable(l:ag_executable)
+    echoe "Ag command '" . l:ag_executable . "' was not found. Is the silver searcher installed and on your $PATH?"
+    return
+  endif
+
   " If no pattern is provided, search for the word under the cursor
   if empty(a:args)
     let l:grepargs = expand("<cword>")
@@ -35,20 +76,29 @@ function! ag#Ag(cmd, args)
 
   " Format, used to manage column jump
   if a:cmd =~# '-g$'
-    let g:agformat="%f"
-  elseif !exists("g:agformat")
-    let g:agformat="%f:%l:%c:%m"
+    let s:ag_format_backup=g:ag_format
+    let g:ag_format="%f"
+  elseif exists("s:ag_format_backup")
+    let g:ag_format=s:ag_format_backup
+  elseif !exists("g:ag_format")
+    let g:ag_format="%f:%l:%c:%m"
   endif
 
-  let grepprg_bak=&grepprg
-  let grepformat_bak=&grepformat
+  let l:grepprg_bak=&grepprg
+  let l:grepformat_bak=&grepformat
+  let l:t_ti_bak=&t_ti
+  let l:t_te_bak=&t_te
   try
-    let &grepprg=g:agprg
-    let &grepformat=g:agformat
-    silent execute a:cmd . " " . escape(l:grepargs, '|')
+    let &grepprg=g:ag_prg
+    let &grepformat=g:ag_format
+    set t_ti=
+    set t_te=
+    silent! execute a:cmd . " " . escape(l:grepargs, '|')
   finally
-    let &grepprg=grepprg_bak
-    let &grepformat=grepformat_bak
+    let &grepprg=l:grepprg_bak
+    let &grepformat=l:grepformat_bak
+    let &t_ti=l:t_ti_bak
+    let &t_te=l:t_te_bak
   endtry
 
   if a:cmd =~# '^l'
@@ -68,7 +118,7 @@ function! ag#Ag(cmd, args)
   endif
 
   " If highlighting is on, highlight the search keyword.
-  if exists("g:aghighlight")
+  if exists("g:ag_highlight")
     let @/=a:args
     set hlsearch
   end
