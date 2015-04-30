@@ -1,4 +1,3 @@
-import functools
 import rope.base.pynames
 from rope.base import ast, utils
 from rope.refactor.importutils import importinfo
@@ -39,7 +38,8 @@ class ModuleImports(object):
 
     def get_used_imports(self, defined_pyobject):
         result = []
-        can_select = _OneTimeSelector(self._get_unbound_names(defined_pyobject))
+        can_select = _OneTimeSelector(
+            self._get_unbound_names(defined_pyobject))
         visitor = actions.FilteringVisitor(
             self.pycore, self._current_folder(), can_select)
         for import_statement in self.imports:
@@ -60,9 +60,8 @@ class ModuleImports(object):
         # Writing module docs
         result.extend(after_removing[first_non_blank:first_import])
         # Writing imports
-        sorted_imports = sorted(imports, key = functools.cmp_to_key(self._compare_import_locations))
+        sorted_imports = sorted(imports, self._compare_import_locations)
         for stmt in sorted_imports:
-            start = self._get_import_location(stmt)
             if stmt != sorted_imports[0]:
                 result.append('\n' * stmt.blank_lines)
             result.append(stmt.get_import_statement() + '\n')
@@ -87,7 +86,7 @@ class ModuleImports(object):
                 return stmt.get_new_start()
             else:
                 return stmt.get_old_location()[0]
-        return get_location(stmt1) - get_location(stmt2)
+        return cmp(get_location(stmt1), get_location(stmt2))
 
     def _remove_imports(self, imports):
         lines = self.pymodule.source_code.splitlines(True)
@@ -179,11 +178,10 @@ class ModuleImports(object):
         visitor = actions.SortingVisitor(self.pycore, self._current_folder())
         for import_statement in self.imports:
             import_statement.accept(visitor)
-        in_projects = sorted(visitor.in_project, key = self._compare_imports)
-        third_party = sorted(visitor.third_party, key = self._compare_imports)
-        standards = sorted(visitor.standard, key = self._compare_imports)
-        future = sorted(visitor.future, key = self._compare_imports)
-        blank_lines = 0
+        in_projects = sorted(visitor.in_project, self._compare_imports)
+        third_party = sorted(visitor.third_party, self._compare_imports)
+        standards = sorted(visitor.standard, self._compare_imports)
+        future = sorted(visitor.future, self._compare_imports)
         last_index = self._first_import_line()
         last_index = self._move_imports(future, last_index, 0)
         last_index = self._move_imports(standards, last_index, 1)
@@ -209,9 +207,14 @@ class ModuleImports(object):
                 break
         return lineno
 
-    def _compare_imports(self, stmt):
-        str = stmt.get_import_statement()
-        return (str.startswith('from '), str)
+    def _compare_imports(self, stmt1, stmt2):
+        str1 = stmt1.get_import_statement()
+        str2 = stmt2.get_import_statement()
+        if str1.startswith('from ') and not str2.startswith('from '):
+            return 1
+        if not str1.startswith('from ') and str2.startswith('from '):
+            return -1
+        return cmp(str1, str2)
 
     def _move_imports(self, imports, index, blank_lines):
         if imports:
@@ -273,7 +276,7 @@ class _UnboundNameFinder(object):
 
     def _visit_child_scope(self, node):
         pyobject = self.pyobject.get_module().get_scope().\
-                   get_inner_scope_for_line(node.lineno).pyobject
+            get_inner_scope_for_line(node.lineno).pyobject
         visitor = _LocalUnboundNameFinder(pyobject, self)
         for child in ast.get_child_nodes(node):
             ast.walk(child, visitor)
@@ -424,13 +427,14 @@ class _GlobalImportFinder(object):
         if node.level:
             level = node.level
         import_info = importinfo.FromImport(
-            node.module or '', # see comment at rope.base.ast.walk
+            node.module or '',  # see comment at rope.base.ast.walk
             level, self._get_names(node.names))
         start_line = node.lineno
         self.imports.append(importinfo.ImportStatement(
                             import_info, node.lineno, end_line,
                             self._get_text(start_line, end_line),
-                            blank_lines=self._count_empty_lines_before(start_line)))
+                            blank_lines=
+                            self._count_empty_lines_before(start_line)))
 
     def _get_names(self, alias_names):
         result = []

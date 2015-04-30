@@ -14,6 +14,7 @@ def find_visible_for_suite(root, lines):
     line2 = find_visible_for_suite(root, lines[1:])
     suite1 = root.find_suite(line1)
     suite2 = root.find_suite(line2)
+
     def valid(suite):
         return suite is not None and not suite.ignored
     if valid(suite1) and not valid(suite2):
@@ -127,15 +128,6 @@ class _SuiteWalker(object):
             self.suites.append(Suite(handler.body, node.lineno, self.suite))
         if node.orelse:
             self.suites.append(Suite(node.orelse, node.lineno, self.suite))
-
-    def _Try(self, node):
-        self.suites.append(Suite(node.body, node.lineno, self.suite))
-        for handler in node.handlers:
-            self.suites.append(Suite(handler.body, node.lineno, self.suite))
-        if node.orelse:
-            self.suites.append(Suite(node.orelse, node.lineno, self.suite))
-        if node.finalbody:
-            self.suites.append(Suite(node.finalbody, node.lineno, self.suite))
 
     def _add_if_like_node(self, node):
         self.suites.append(Suite(node.body, node.lineno, self.suite))

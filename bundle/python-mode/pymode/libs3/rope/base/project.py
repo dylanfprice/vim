@@ -1,4 +1,4 @@
-import pickle
+import cPickle as pickle
 import os
 import shutil
 import sys
@@ -6,7 +6,7 @@ import warnings
 
 import rope.base.fscommands
 from rope.base import exceptions, taskhandle, prefs, history, pycore, utils
-from rope.base.resourceobserver import *
+import rope.base.resourceobserver as resourceobserver
 from rope.base.resources import File, Folder, _ResourceMatcher
 
 
@@ -173,7 +173,7 @@ class Project(_Project):
                                 '__file__': config.real_path})
             if config.exists():
                 config = self.ropefolder.get_child('config.py')
-                exec(config.read(), run_globals)
+                execfile(config.real_path, run_globals)
             else:
                 exec(self._default_config(), run_globals)
             if 'set_prefs' in run_globals:
@@ -258,7 +258,7 @@ class _FileListCacher(object):
     def __init__(self, project):
         self.project = project
         self.files = None
-        rawobserver = ResourceObserver(
+        rawobserver = resourceobserver.ResourceObserver(
             self._changed, self._invalid, self._invalid,
             self._invalid, self._invalid)
         self.project.add_observer(rawobserver)
@@ -334,7 +334,7 @@ class _DataFiles(object):
 
     def _can_compress(self):
         try:
-            import gzip
+            import gzip  # noqa
             return True
         except ImportError:
             return False

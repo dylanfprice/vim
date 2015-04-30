@@ -19,7 +19,7 @@ class MemoryDB(objectdb.FileDict):
                 self._files = result
 
     def keys(self):
-        return list(self._files.keys())
+        return self._files.keys()
 
     def __contains__(self, key):
         return key in self._files
@@ -65,7 +65,7 @@ class FileInfo(objectdb.FileInfo):
         self.scopes[key] = ScopeInfo()
 
     def keys(self):
-        return list(self.scopes.keys())
+        return self.scopes.keys()
 
     def __contains__(self, key):
         return key in self.scopes

@@ -61,12 +61,12 @@ class EncapsulateField(object):
         if pyname is not None and isinstance(pyname, pynames.AssignedName):
             pymodule, lineno = self.pyname.get_definition_location()
             scope = pymodule.get_scope().\
-                             get_inner_scope_for_line(lineno)
+                get_inner_scope_for_line(lineno)
             if scope.get_kind() == 'Class':
-                return pyname in list(scope.get_names().values())
+                return pyname in scope.get_names().values()
             parent = scope.parent
             if parent is not None and parent.get_kind() == 'Class':
-                return pyname in list(parent.get_names().values())
+                return pyname in parent.get_names().values()
         return False
 
     def _get_defining_class_scope(self):
@@ -90,7 +90,7 @@ class EncapsulateField(object):
         if new_source is not None:
             pymodule = self.pycore.get_string_module(new_source, self.resource)
             class_scope = pymodule.get_scope().\
-                          get_inner_scope_for_line(class_scope.get_start())
+                get_inner_scope_for_line(class_scope.get_start())
         indents = sourceutils.get_indent(self.pycore) * ' '
         getter = 'def %s(self):\n%sreturn self.%s' % \
                  (getter, indents, self.name)
@@ -155,7 +155,7 @@ class _FindChangesForModule(object):
                                   + ' %s ' % assignment_type[:-1])
                 current_line = self.lines.get_line_number(start)
                 start_line, end_line = self.pymodule.logical_lines.\
-                                       logical_line_in(current_line)
+                    logical_line_in(current_line)
                 self.last_set = self.lines.get_line_end(end_line)
                 end = self.source.index('=', end) + 1
                 self.set_index = len(result)

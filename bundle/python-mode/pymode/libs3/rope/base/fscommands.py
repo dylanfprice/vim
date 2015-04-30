@@ -6,7 +6,7 @@ provided by `FileSystemCommands` class.  See `SubversionCommands` and
 `MercurialCommands` for example.
 
 """
-import os, re
+import os
 import shutil
 import subprocess
 
@@ -188,7 +188,7 @@ def _execute(args, cwd=None):
 
 
 def unicode_to_file_data(contents, encoding=None):
-    if not isinstance(contents, str):
+    if not isinstance(contents, unicode):
         return contents
     if encoding is None:
         encoding = read_str_coding(contents)
@@ -199,14 +199,16 @@ def unicode_to_file_data(contents, encoding=None):
     except UnicodeEncodeError:
         return contents.encode('utf-8')
 
+
 def file_data_to_unicode(data, encoding=None):
     result = _decode_data(data, encoding)
     if '\r' in result:
         result = result.replace('\r\n', '\n').replace('\r', '\n')
     return result
 
+
 def _decode_data(data, encoding):
-    if isinstance(data, str):
+    if isinstance(data, unicode):
         return data
     if encoding is None:
         encoding = read_str_coding(data)
@@ -219,15 +221,14 @@ def _decode_data(data, encoding):
     try:
         return data.decode(encoding)
     except (UnicodeError, LookupError):
-        # fallback to utf-8: it should never fail
-        return data.decode('utf-8')
+        # fallback to latin1: it should never fail
+        return data.decode('latin1')
 
 
 def read_file_coding(path):
     file = open(path, 'b')
     count = 0
     result = []
-    buffsize = 10
     while True:
         current = file.read(10)
         if not current:
@@ -239,13 +240,13 @@ def read_file_coding(path):
 
 
 def read_str_coding(source):
-    if not isinstance(source, str):
-        source = source.decode("utf-8", "ignore")
-    #TODO: change it to precompiled version
-    mex = re.search("\-\*\-\s+coding:\s+(.*?)\s+\-\*\-", source)
-    if mex:
-        return mex.group(1)
-    return "utf-8"
+    try:
+        first = source.index('\n') + 1
+        second = source.index('\n', first) + 1
+    except ValueError:
+        second = len(source)
+    return _find_coding(source[:second])
+
 
 def _find_coding(text):
     coding = 'coding'

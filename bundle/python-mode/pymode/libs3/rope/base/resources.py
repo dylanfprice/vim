@@ -81,12 +81,11 @@ class File(Resource):
         data = self.read_bytes()
         try:
             return rope.base.fscommands.file_data_to_unicode(data)
-        except UnicodeDecodeError as e:
+        except UnicodeDecodeError, e:
             raise exceptions.ModuleDecodeError(self.path, e.reason)
 
     def read_bytes(self):
-        with open(self.real_path, 'rb') as fi:
-            return fi.read()
+        return open(self.real_path, 'rb').read()
 
     def write(self, contents):
         try:
@@ -188,8 +187,8 @@ class _ResourceMatcher(object):
 
     def _add_pattern(self, pattern):
         re_pattern = pattern.replace('.', '\\.').\
-                     replace('*', '[^/]*').replace('?', '[^/]').\
-                     replace('//', '/(.*/)?')
+            replace('*', '[^/]*').replace('?', '[^/]').\
+            replace('//', '/(.*/)?')
         re_pattern = '^(.*/)?' + re_pattern + '(/.*)?$'
         self.compiled_patterns.append(re.compile(re_pattern))
 

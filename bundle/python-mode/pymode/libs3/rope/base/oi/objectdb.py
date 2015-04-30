@@ -1,4 +1,5 @@
-from collections import UserDict, MutableMapping
+import UserDict
+
 
 class ObjectDB(object):
 
@@ -29,7 +30,7 @@ class ObjectDB(object):
         self._file_added(newfile)
 
     def get_files(self):
-        return list(self.files.keys())
+        return self.files.keys()
 
     def get_returned(self, path, key, args):
         scope_info = self._get_scope_info(path, key, readonly=True)
@@ -77,7 +78,7 @@ class ObjectDB(object):
             self.files[path].create_scope(key)
         result = self.files[path][key]
         if isinstance(result, dict):
-            print(self.files, self.files[path], self.files[path][key])
+            print self.files, self.files[path], self.files[path][key]
         return result
 
     def _file_removed(self, path):
@@ -119,22 +120,13 @@ class _NullScopeInfo(object):
             raise NotImplementedError()
 
 
-class FileInfo(MutableMapping):
+class FileInfo(UserDict.DictMixin):
 
     def create_scope(self, key):
         pass
 
-    def __iter__(self):
-        for key in self.keys():
-            yield key
 
-    def __len__(self):
-        return len(self.keys())
-
-    def __setitem__(self, key, value):
-        self[key] = value
-
-class FileDict(MutableMapping):
+class FileDict(UserDict.DictMixin):
 
     def create(self, key):
         pass
@@ -142,15 +134,6 @@ class FileDict(MutableMapping):
     def rename(self, key, new_key):
         pass
 
-    def __iter__(self):
-        for key in self.keys():
-            yield key
-
-    def __len__(self):
-        return len(self.keys())
-
-    def __setitem__(self, key, value):
-        self[key] = value
 
 class ScopeInfo(object):
 

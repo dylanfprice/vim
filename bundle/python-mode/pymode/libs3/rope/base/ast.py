@@ -6,16 +6,15 @@ from rope.base import fscommands
 
 def parse(source, filename='<string>'):
     # NOTE: the raw string should be given to `compile` function
-    if isinstance(source, str):
+    if isinstance(source, unicode):
         source = fscommands.unicode_to_file_data(source)
-    source = source.decode()
     if '\r' in source:
         source = source.replace('\r\n', '\n').replace('\r', '\n')
     if not source.endswith('\n'):
         source += '\n'
     try:
-        return compile(source.encode(), filename, 'exec', _ast.PyCF_ONLY_AST)
-    except (TypeError, ValueError) as e:
+        return compile(source, filename, 'exec', _ast.PyCF_ONLY_AST)
+    except (TypeError, ValueError), e:
         error = SyntaxError()
         error.lineno = 1
         error.filename = filename
@@ -28,6 +27,10 @@ def walk(node, walker):
     method_name = '_' + node.__class__.__name__
     method = getattr(walker, method_name, None)
     if method is not None:
+        if isinstance(node, _ast.ImportFrom) and node.module is None:
+            # In python < 2.7 ``node.module == ''`` for relative imports
+            # but for python 2.7 it is None. Generalizing it to ''.
+            node.module = ''
         return method(node)
     for child in get_child_nodes(node):
         walk(child, walker)
