@@ -111,7 +111,7 @@ map <c-h> <c-w>h
 set completeopt-=preview
 
 " CtrlP settings
-nmap ,b :CtrlPBuffer<CR>
+nmap <leader>bf :CtrlPBuffer<CR>
 set wildignore+=*.pyc "ignore pyc files
 
 " Ag
