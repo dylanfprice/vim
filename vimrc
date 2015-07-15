@@ -73,8 +73,13 @@ set ruler
 set backspace=indent,eol,start
 
 " Highlight search terms...
-set hlsearch
-set incsearch " ...dynamically as they are typed.
+set incsearch
+" allows incsearch highlighting for range commands
+" e.g. ?pattern$t copies the line that matches pattern to below the current
+" line
+cnoremap $t <CR>:t''<CR>
+cnoremap $m <CR>:m''<CR>
+cnoremap $d <CR>:d<CR>``
 
 " Less interruptive prompts
 set shortmess=atI
