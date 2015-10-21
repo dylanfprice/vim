@@ -7,7 +7,7 @@ syntax on
 filetype plugin indent on
 
 " Change colorscheme
-set background=light
+set background=dark
 colorscheme solarized
 set t_Co=256
 
