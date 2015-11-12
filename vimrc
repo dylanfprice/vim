@@ -22,9 +22,6 @@ set expandtab
 set wrap
 set linebreak
 
-" Map <Ctrl>-F to <Esc>
-imap  <Esc>
-
 " Automatically save and load folds
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
@@ -52,9 +49,6 @@ set wildmode=list:longest
 " Ignore case on / searches, but not on * searches
 set ignorecase 
 set smartcase
-
-" Un-highlight highlighted words
-nmap <silent> <leader>n :silent :nohlsearch<CR>
 
 " Set the terminal title
 set title
@@ -109,7 +103,7 @@ map <c-h> <c-w>h
 " backupcopy                                                                     
 "    "yes"   make a copy of the file and overwrite the original one             
 "    "no"    rename the file and write a new one                                
-"    "    "auto"  one of the previous, what works best                               
+"    "auto"  one of the previous, what works best                               
 :set backupcopy=yes
 
 " do not show preview window during autocomplete
