@@ -109,9 +109,10 @@ set nobackup
 " do not show preview window during autocomplete
 set completeopt-=preview
 
+set wildignore+=*.pyc "ignore pyc files
+
 " CtrlP settings
 nmap <leader>bf :CtrlPBuffer<CR>
-set wildignore+=*.pyc "ignore pyc files
 
 " Ag
 let g:agprg="ag --column --ignore migrations"
@@ -121,7 +122,7 @@ let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 " netrw
-let g:netrw_hide = 1
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  " ignore dotfiles by default
 
 " strip trailing whitespace on file save
 fun! <SID>StripTrailingWhitespaces()
