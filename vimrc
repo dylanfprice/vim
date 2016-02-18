@@ -34,8 +34,8 @@ nnoremap ' `
 nnoremap ` '
 
 " Set <Leader> and <LocalLeader>
-let mapleader = ","
-let maplocalleader = "<SPACE>"
+let mapleader = "<SPACE>"
+let maplocalleader = ","
 
 " Extended history
 set history=1000
@@ -88,9 +88,6 @@ highlight DiffChange term=reverse cterm=bold ctermbg=cyan ctermfg=black
 highlight DiffText term=reverse cterm=bold ctermbg=gray ctermfg=black
 highlight DiffDelete term=reverse cterm=bold ctermbg=red ctermfg=black 
 
-" Set no backup files
-set nobackup
-
 " close buffer without closing window
 map <leader>bd :bp<bar>sp<bar>bn<bar>bd<CR>
 
@@ -99,6 +96,9 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
+
+" Set no backup files
+set nobackup
 
 " backupcopy                                                                     
 "    "yes"   make a copy of the file and overwrite the original one             
@@ -116,12 +116,12 @@ set wildignore+=*.pyc "ignore pyc files
 " Ag
 let g:agprg="ag --column --ignore migrations"
 
-" netrw
-let g:netrw_list_hide= ['.*\.swp$', '.*\.pyc$', '.*__pycache__.*']
-
 " supertab
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
+
+" netrw
+let g:netrw_hide = 1
 
 " strip trailing whitespace on file save
 fun! <SID>StripTrailingWhitespaces()
@@ -131,4 +131,4 @@ fun! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfun
 
-autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+autocmd FileType c,cpp,java,php,ruby,python,javascript,yaml,ansible autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
