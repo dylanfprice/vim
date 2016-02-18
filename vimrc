@@ -34,8 +34,8 @@ nnoremap ' `
 nnoremap ` '
 
 " Set <Leader> and <LocalLeader>
-let mapleader = "<SPACE>"
-let maplocalleader = ","
+let mapleader = " "
+let maplocalleader = "\\"
 
 " Extended history
 set history=1000
@@ -112,7 +112,8 @@ set completeopt-=preview
 set wildignore+=*.pyc "ignore pyc files
 
 " CtrlP settings
-nmap <leader>bf :CtrlPBuffer<CR>
+let g:ctrlp_map = '<leader><leader>'
+nmap <leader>b :CtrlPBuffer<CR>
 
 " Ag
 let g:agprg="ag --column --ignore migrations"
