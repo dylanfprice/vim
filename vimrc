@@ -116,17 +116,8 @@ set wildignore+=*.pyc "ignore pyc files
 " Ag
 let g:agprg="ag --column --ignore migrations"
 
-" See a TODO or FIXME list with ,td
-map <leader>td <Plug>TaskList
-
-" NERDTree and Tagbar
-let g:tagbar_autofocus = 1
-let g:tagbar_sort = 0
-let g:tagbar_foldlevel = 0
-let g:tagbar_autoshowtag = 1
-map <leader>tn :NERDTreeToggle<CR>
-map <leader>tb :TagbarToggle<CR>
-let NERDTreeIgnore = ['\.pyc$', '__pycache__']
+" netrw
+let g:netrw_list_hide= ['.*\.swp$', '.*\.pyc$', '.*__pycache__.*']
 
 " supertab
 let g:SuperTabDefaultCompletionType = "context"
