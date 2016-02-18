@@ -89,8 +89,10 @@ let [s:pref, s:bpref, s:opts, s:new_opts, s:lc_opts] =
 	\ 'user_command':          ['s:usrcmd', ''],
 	\ 'validate':              ['s:validate', ''],
 	\ 'working_path_mode':     ['s:pathmode', 'ra'],
-	\ 'line_prefix':					 ['s:lineprefix', '> '],
+	\ 'line_prefix':           ['s:lineprefix', '> '],
 	\ 'open_single_match':     ['s:opensingle', []],
+	\ 'brief_prompt':          ['s:brfprt', 0],
+	\ 'match_current_file':    ['s:matchcrfile', 0],
 	\ }, {
 	\ 'open_multiple_files':   's:opmul',
 	\ 'regexp':                's:regexp',
@@ -417,7 +419,11 @@ fu! s:UserCmd(lscmd)
 		let lscmd = substitute(lscmd, '\v(^|\&\&\s*)\zscd (/d)@!', 'cd /d ', '')
 	en
 	let path = exists('*shellescape') ? shellescape(path) : path
-	let g:ctrlp_allfiles = split(system(printf(lscmd, path)), "\n")
+	if has('patch-7.4-597')
+		let g:ctrlp_allfiles = systemlist(printf(lscmd, path))
+	else
+		let g:ctrlp_allfiles = split(system(printf(lscmd, path)), "\n")
+	end
 	if exists('+ssl') && exists('ssl')
 		let &ssl = ssl
 		cal map(g:ctrlp_allfiles, 'tr(v:val, "\\", "/")')
@@ -489,9 +495,12 @@ fu! s:MatchIt(items, pat, limit, exc)
 		\ : s:martcs.a:pat
 	for item in a:items
 		let id += 1
-		try | if !( s:ispath && item == a:exc ) && call(s:mfunc, [item, pat]) >= 0
-			cal add(lines, item)
-		en | cat | brea | endt
+		try
+			if (s:matchcrfile || !( s:ispath && item == a:exc )) && 
+						\call(s:mfunc, [item, pat]) >= 0
+				cal add(lines, item)
+			en
+		cat | brea | endt
 		if a:limit > 0 && len(lines) >= a:limit | brea | en
 	endfo
 	let s:mdata = [s:dyncwd, s:itemtype, s:regexp, s:sublist(a:items, id, -1)]
@@ -670,6 +679,10 @@ endf
 
 fu! s:PrtBS()
 	if !s:focus | retu | en
+	if empty(s:prompt[0]) && s:brfprt != 0
+		cal s:PrtExit()
+		retu
+	endif
 	unl! s:hstgot
 	let [s:prompt[0], s:matches] = [substitute(s:prompt[0], '.$', '', ''), 1]
 	cal s:BuildPrompt(1)
@@ -901,7 +914,7 @@ fu! s:MapSpecs()
 	if !( exists('s:smapped') && s:smapped == s:bufnr )
 		" Correct arrow keys in terminal
 		if ( has('termresponse') && v:termresponse =~ "\<ESC>" )
-			\ || &term =~? '\vxterm|<k?vt|gnome|screen|linux|ansi'
+			\ || &term =~? '\vxterm|<k?vt|gnome|screen|linux|ansi|tmux'
 			for each in ['\A <up>','\B <down>','\C <right>','\D <left>']
 				exe s:lcmap.' <esc>['.each
 			endfo
@@ -1631,8 +1644,8 @@ fu! ctrlp#setpathmode(pmode, ...)
 		let spath = a:0 ? a:1 : s:crfpath
 		let markers = ['.git', '.hg', '.svn', '.bzr', '_darcs']
 		if type(s:rmarkers) == 3 && !empty(s:rmarkers)
-			if s:findroot(spath, s:rmarkers, 0, 0) != [] | retu 1 | en
 			cal filter(markers, 'index(s:rmarkers, v:val) < 0')
+			let markers = s:rmarkers + markers
 		en
 		if s:findroot(spath, markers, 0, 0) != [] | retu 1 | en
 	en
