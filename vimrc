@@ -40,14 +40,11 @@ let maplocalleader = "\\"
 " Extended history
 set history=1000
 
-" Extended % matching
-runtime macros/matchit.vim
-
 " Make TAB completion in command mode like a shell
 set wildmode=list:longest
 
 " Ignore case on / searches, but not on * searches
-set ignorecase 
+set ignorecase
 set smartcase
 
 " Set the terminal title
@@ -63,11 +60,6 @@ nnoremap <C-y> 3<C-y>
 " See where you are in the buffer in lower right corner
 set ruler
 
-" Intuitive backspacing in insert mode
-set backspace=indent,eol,start
-
-" Highlight search terms...
-set incsearch
 " allows incsearch highlighting for range commands
 " e.g. ?pattern$t copies the line that matches pattern to below the current
 " line
@@ -86,7 +78,7 @@ set fileencoding=utf-8
 highlight DiffAdd term=reverse cterm=bold ctermbg=green ctermfg=white
 highlight DiffChange term=reverse cterm=bold ctermbg=cyan ctermfg=black
 highlight DiffText term=reverse cterm=bold ctermbg=gray ctermfg=black
-highlight DiffDelete term=reverse cterm=bold ctermbg=red ctermfg=black 
+highlight DiffDelete term=reverse cterm=bold ctermbg=red ctermfg=black
 
 " close buffer without closing window
 map <leader>bd :bp<bar>sp<bar>bn<bar>bd<CR>
@@ -100,10 +92,10 @@ map <c-h> <c-w>h
 " Set no backup files
 set nobackup
 
-" backupcopy                                                                     
-"    "yes"   make a copy of the file and overwrite the original one             
-"    "no"    rename the file and write a new one                                
-"    "auto"  one of the previous, what works best                               
+" backupcopy
+"    "yes"   make a copy of the file and overwrite the original one
+"    "no"    rename the file and write a new one
+"    "auto"  one of the previous, what works best
 :set backupcopy=yes
 
 " do not show preview window during autocomplete
@@ -133,4 +125,4 @@ fun! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfun
 
-autocmd FileType c,cpp,java,php,ruby,python,javascript,yaml,ansible autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
