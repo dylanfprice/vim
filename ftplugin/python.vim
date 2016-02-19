@@ -23,35 +23,3 @@ let g:pymode_lint_on_fly = 0
 let g:pymode_lint_ignore='S101,E262,E261,E501,E1103,E1002,W0105,W0212,W0223,C0111,C0301,C1001,R0924,R0201'
 let g:pymode_lint_checkers = ['pylint', 'pyflakes', 'pep8'] "pylint
 nmap <leader>pl :PymodeLint<CR>
-
-" set up tags
-set tags=$ENERGYSAVVY_DIR/package-tags,$ENERGYSAVVY_DIR/optix-tags
-" tag completion
-inoremap <c-x><c-]> <c-]>
-nmap <leader>ps :TagSearch 
-nmap <leader>pt :TagSearch <c-r><c-w><CR>
-
-" Function to search tags
-command! -nargs=1 TagSearch call s:TagSearch(<f-args>)
-function! s:TagSearch(name)
-  " Retrieve tags of the 'f' kind
-  let tags = taglist('^'.a:name)
-  "let tags = filter(tags, 'v:val["kind"] == "f"')
-
-  " Prepare them for inserting in the quickfix window
-  let qf_taglist = []
-  for entry in tags
-    call add(qf_taglist, {
-          \ 'pattern':  entry['cmd'],
-          \ 'filename': entry['filename'],
-          \ })
-  endfor
-
-  " Place the tags in the quickfix window, if possible
-  if len(qf_taglist) > 0
-    call setqflist(qf_taglist)
-    copen
-  else
-    echo "No tags found for ".a:name
-  endif
-endfunction
