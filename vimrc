@@ -112,8 +112,8 @@ set completeopt-=preview
 set wildignore+=*.pyc "ignore pyc files
 
 " CtrlP settings
-let g:ctrlp_map = '<leader><leader>'
-nmap <leader>b :CtrlPBuffer<CR>
+let g:ctrlp_map = '<leader>f'
+nmap <leader><leader> :CtrlPBuffer<CR>
 
 " Ag
 let g:agprg="ag --column --ignore migrations"
