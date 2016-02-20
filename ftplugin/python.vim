@@ -16,7 +16,7 @@ let g:pymode_rope_autoimport_modules = ['os.*', 'shutil', 'datetime.*', 'optix.*
 let g:pymode_rope_autoimport_import_after_complete = 0
 map <c-i> :PymodeRopeAutoImport<CR>
 
-let g:pymode_lint = 1
+let g:pymode_lint = 0
 let g:pymode_lint_on_write = 0
 let g:pymode_lint_on_unmodified = 0
 let g:pymode_lint_on_fly = 0
