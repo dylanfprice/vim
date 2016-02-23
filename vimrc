@@ -118,7 +118,7 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  " ignore dotfiles by default
 
 " syntastic
-nnoremap <leader>cs :SyntasticCheck<CR>
+nnoremap <leader>l :SyntasticCheck<CR>
 let g:syntastic_mode_map = {'mode': 'passive', 'active_filetypes':[], 'passive_filetypes': []}
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
