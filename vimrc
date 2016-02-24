@@ -125,12 +125,5 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
-" strip trailing whitespace on file save
-fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
-
-autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+" remove trailing spaces on save
+autocmd BufWritePre * :%s/\s\+$//e
