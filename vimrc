@@ -126,4 +126,4 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 " remove trailing spaces on save
-autocmd BufWritePre * :%s/\s\+$//e
+autocmd FileType python,javascript,javascript.jsx,jsx autocmd BufWritePre <buffer> :%s/\s\+$//e
