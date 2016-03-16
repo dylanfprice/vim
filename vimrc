@@ -116,6 +116,7 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 " netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  " ignore dotfiles by default
+let g:netrw_localrmdir='rm -r'
 
 " syntastic
 nnoremap <leader>l :SyntasticCheck<CR>
