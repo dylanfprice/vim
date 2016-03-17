@@ -83,12 +83,6 @@ highlight DiffDelete term=reverse cterm=bold ctermbg=red ctermfg=black
 " close buffer without closing window
 map <leader>bd :bp<bar>sp<bar>bn<bar>bd<CR>
 
-" Move around window splits more efficiently
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
-
 " Set no backup files
 set nobackup
 
