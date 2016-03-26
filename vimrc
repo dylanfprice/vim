@@ -67,9 +67,11 @@ set completeopt-=preview
 
 set wildignore+=*.pyc "ignore pyc files
 
-" CtrlP settings
-let g:ctrlp_map = '<leader>f'
-nmap <leader><leader> :CtrlPBuffer<CR>
+" FZF settings
+set rtp+=~/.fzf
+let g:fzf_command_prefix = 'Fzf'
+nmap <leader>f :FzfFiles<CR>
+nmap <leader><leader> :FzfBuffers<CR>
 
 " netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  " ignore dotfiles by default
