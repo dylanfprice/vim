@@ -69,9 +69,8 @@ set wildignore+=*.pyc "ignore pyc files
 
 " FZF settings
 set rtp+=~/.fzf
-let g:fzf_command_prefix = 'Fzf'
-nmap <leader>f :FzfFiles<CR>
-nmap <leader><leader> :FzfBuffers<CR>
+nmap <leader>f :Files<CR>
+nmap <leader><leader> :Buffers<CR>
 
 " netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  " ignore dotfiles by default
