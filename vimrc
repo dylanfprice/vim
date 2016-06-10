@@ -7,6 +7,9 @@ set background=dark
 colorscheme solarized
 set t_Co=256
 
+" Allow setting syntax and stuff in modeline
+set modeline
+
 " Set tabs to be 4 spaces wide
 set tabstop=4
 set softtabstop=4
