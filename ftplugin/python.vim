@@ -2,6 +2,8 @@
 nmap <leader>i :Isort<CR>
 let g:vim_isort_map = '<c-o>'
 
+let g:syntastic_python_checkers = ['flake8']
+
 " python-mode
 let g:pymode_rope = 1
 let g:pymode_rope_autoimport = 0
