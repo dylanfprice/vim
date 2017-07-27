@@ -88,5 +88,10 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
+" disable jedi-vim (we enable it only for python)
+let g:jedi#auto_initialization = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#completions_enabled = 0
+
 " remove trailing spaces on save
 autocmd FileType clojure,python,javascript autocmd BufWritePre <buffer> :%s/\s\+$//e
