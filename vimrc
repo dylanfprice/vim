@@ -2,6 +2,9 @@
 call pathogen#infect()
 call pathogen#helptags()
 
+" Set font size for gvim
+set guifont=Monospace\ 12
+
 " Change colorscheme
 set background=dark
 colorscheme solarized
