@@ -6,5 +6,7 @@ let g:syntastic_python_checkers = ['flake8']
 
 set foldmethod=indent
 
-nnoremap <silent> <buffer> ]<C-D> :call jedi#goto_assignments()<CR>
-nnoremap <silent> <buffer> K :call jedi#show_documentation()<CR>
+let g:jedi#popup_on_dot = 0
+let g:jedi#goto_assignments_command = "]<C-D>"
+let g:jedi#documentation_command = "K"
+let g:jedi#show_call_signatures = "2"
