@@ -69,8 +69,8 @@ highlight DiffChange term=reverse cterm=bold ctermbg=cyan ctermfg=black
 highlight DiffText term=reverse cterm=bold ctermbg=gray ctermfg=black
 highlight DiffDelete term=reverse cterm=bold ctermbg=red ctermfg=black
 
-" do not show preview window during autocomplete
-set completeopt-=preview
+" autocomplete behavior
+set completeopt=menuone,longest,preview
 
 set wildignore+=*.pyc "ignore pyc files
 
