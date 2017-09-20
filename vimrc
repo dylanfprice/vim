@@ -70,7 +70,7 @@ highlight DiffText term=reverse cterm=bold ctermbg=gray ctermfg=black
 highlight DiffDelete term=reverse cterm=bold ctermbg=red ctermfg=black
 
 " autocomplete behavior
-set completeopt=menuone,longest,preview
+set completeopt=menu,longest,preview
 
 set wildignore+=*.pyc "ignore pyc files
 
