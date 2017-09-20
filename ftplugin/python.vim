@@ -14,3 +14,4 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = ""
+let g:jedi#smart_auto_mappings = 0
