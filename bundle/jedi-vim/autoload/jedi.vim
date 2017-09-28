@@ -61,7 +61,7 @@ function! s:init_python() abort
     if g:jedi#force_py_version !=# 'auto'
         " Always use the user supplied version.
         try
-            return jedi#force_py_version(g:jedi#force_py_version)
+            return jedi#setup_py_version(g:jedi#force_py_version)
         catch
             throw 'Could not setup g:jedi#force_py_version: '.v:exception
         endtry
@@ -88,7 +88,7 @@ function! s:init_python() abort
 
         " Make sure that the auto-detected version is available in Vim.
         if !has('nvim') || has('python'.(s:def_py == 2 ? '' : s:def_py))
-            return jedi#force_py_version(s:def_py)
+            return jedi#setup_py_version(s:def_py)
         endif
 
         " Add a warning in case the auto-detected version is not available,
@@ -141,30 +141,48 @@ endfunction
 let s:python_version = 'null'
 function! jedi#setup_py_version(py_version) abort
     if a:py_version == 2
-        let cmd_init = 'pyfile'
         let cmd_exec = 'python'
         let s:python_version = 2
     elseif a:py_version == 3
-        let cmd_init = 'py3file'
         let cmd_exec = 'python3'
         let s:python_version = 3
     else
         throw 'jedi#setup_py_version: invalid py_version: '.a:py_version
     endif
 
-    try
-        execute cmd_init.' '.s:script_path.'/initialize.py'
-    catch
-        throw 'jedi#setup_py_version: '.v:exception
-    endtry
     execute 'command! -nargs=1 PythonJedi '.cmd_exec.' <args>'
+
+    let s:init_outcome = 0
+    let init_lines = [
+          \ 'import vim',
+          \ 'try:',
+          \ '    import jedi_vim',
+          \ 'except Exception as exc:',
+          \ '    vim.command(''let s:init_outcome = "could not import jedi_vim: {0}: {1}"''.format(exc.__class__.__name__, exc))',
+          \ 'else:',
+          \ '    vim.command(''let s:init_outcome = 1'')']
+    try
+        exe 'PythonJedi exec('''.escape(join(init_lines, '\n'), "'").''')'
+    catch
+        throw printf('jedi#setup_py_version: failed to run Python for initialization: %s.', v:exception)
+    endtry
+    if s:init_outcome is 0
+        throw 'jedi#setup_py_version: failed to run Python for initialization.'
+    elseif s:init_outcome isnot 1
+        throw printf('jedi#setup_py_version: %s.', s:init_outcome)
+    endif
     return 1
 endfunction
 
 
 function! jedi#debug_info() abort
     if s:python_version ==# 'null'
-        call s:init_python()
+        try
+            call s:init_python()
+        catch
+            echohl WarningMsg | echom v:exception | echohl None
+            return
+        endtry
     endif
     if &verbose
       if &filetype !=# 'python'
@@ -184,28 +202,8 @@ function! jedi#debug_info() abort
       endif
       echohl None
     else
-      PythonJedi << EOF
-vim.command("echo printf(' - sys.version: `%s`', {0!r})".format(', '.join([x.strip() for x in __import__('sys').version.split('\n')])))
-vim.command("echo printf(' - site module: `%s`', {0!r})".format(__import__('site').__file__))
-
-try:
-  jedi_vim
-except Exception as e:
-  vim.command("echo printf('ERROR: jedi_vim is not available: %s: %s', {0!r}, {1!r})".format(e.__class__.__name__, str(e)))
-else:
-  try:
-    if jedi_vim.jedi is None:
-      vim.command("echo 'ERROR: the \"jedi\" Python module could not be imported.'")
-      vim.command("echo printf('       The error was: %s', {0!r})".format(getattr(jedi_vim, "jedi_import_error", "UNKNOWN")))
-    else:
-      vim.command("echo printf('Jedi path: `%s`', {0!r})".format(jedi_vim.jedi.__file__))
-      vim.command("echo printf(' - version: %s', {0!r})".format(jedi_vim.jedi.__version__))
-      vim.command("echo ' - sys_path:'")
-      for p in jedi_vim.jedi.Script('')._evaluator.sys_path:
-        vim.command("echo printf('    - `%s`', {0!r})".format(p))
-  except Exception as e:
-    vim.command("echo printf('There was an error accessing jedi_vim.jedi: %s', {0!r})".format(e))
-EOF
+      PythonJedi from jedi_vim_debug import display_debug_info
+      PythonJedi display_debug_info()
     endif
     echo ' - jedi-vim git version: '
     echon substitute(system('git -C '.s:script_path.' describe --tags --always --dirty'), '\v\n$', '', '')
@@ -214,17 +212,22 @@ EOF
     echo "\n"
     echo '##### Settings'
     echo '```'
-    for [k, V] in items(filter(copy(g:), "v:key =~# '\\v^jedi#'"))
+    let jedi_settings = items(filter(copy(g:), "v:key =~# '\\v^jedi#'"))
+    let has_nondefault_settings = 0
+    for [k, V] in jedi_settings
       exe 'let default = '.get(s:default_settings,
             \ substitute(k, '\v^jedi#', '', ''), "'-'")
       " vint: -ProhibitUsingUndeclaredVariable
       if default !=# V
         echo printf('g:%s = %s (default: %s)', k, string(V), string(default))
         unlet! V  " Fix variable type mismatch with Vim 7.3.
+        let has_nondefault_settings = 1
       endif
       " vint: +ProhibitUsingUndeclaredVariable
     endfor
-    echo "\n"
+    if has_nondefault_settings
+      echo "\n"
+    endif
     verb set omnifunc? completeopt?
     echo '```'
 
@@ -240,12 +243,12 @@ EOF
       messages
       echo '```'
       echo "\n"
-      echo "<details><summary>:scriptnames</summary>"
+      echo '<details><summary>:scriptnames</summary>'
       echo "\n"
       echo '```'
       scriptnames
       echo '```'
-      echo "</details>"
+      echo '</details>'
     endif
 endfunction
 
@@ -555,31 +558,36 @@ function! s:save_first_col() abort
 endfunction
 
 
-function! jedi#complete_string(is_popup_on_dot) abort
-    if a:is_popup_on_dot && !(g:jedi#popup_on_dot && jedi#do_popup_on_dot_in_highlight())
-        return ''
-    endif
-    if pumvisible() && !a:is_popup_on_dot
+function! jedi#complete_string(autocomplete) abort
+    if a:autocomplete
+        if !(g:jedi#popup_on_dot && jedi#do_popup_on_dot_in_highlight())
+            return ''
+        endif
+
+        let s:saved_completeopt = &completeopt
+        set completeopt-=longest
+        set completeopt+=menuone
+        set completeopt-=menu
+        if &completeopt !~# 'noinsert\|noselect'
+            if g:jedi#popup_select_first
+                set completeopt+=noinsert
+            else
+                set completeopt+=noselect
+            endif
+        endif
+    elseif pumvisible()
         return "\<C-n>"
-    else
-        return "\<C-x>\<C-o>\<C-r>=jedi#complete_opened(".a:is_popup_on_dot.")\<CR>"
     endif
+    return "\<C-x>\<C-o>\<C-r>=jedi#complete_opened(".a:autocomplete.")\<CR>"
 endfunction
 
 
-function! jedi#complete_opened(is_popup_on_dot) abort
-    if pumvisible()
-        " Only go down if it is visible, user-enabled and the longest
-        " option is set.
-        if g:jedi#popup_select_first && stridx(&completeopt, 'longest') > -1
-            return "\<Down>"
-        endif
-        if a:is_popup_on_dot
-            if &completeopt !~# '\(noinsert\|noselect\)'
-                " Prevent completion of the first entry with dot completion.
-                return "\<C-p>"
-            endif
-        endif
+function! jedi#complete_opened(autocomplete) abort
+    if a:autocomplete
+        let &completeopt = s:saved_completeopt
+        unlet s:saved_completeopt
+    elseif pumvisible() && g:jedi#popup_select_first && stridx(&completeopt, 'longest') > -1
+        return "\<Down>"
     endif
     return ''
 endfunction
@@ -589,7 +597,7 @@ function! jedi#smart_auto_mappings() abort
     " Auto put import statement after from module.name<space> and complete
     if search('\m^\s*from\s\+[A-Za-z0-9._]\{1,50}\%#\s*$', 'bcn', line('.'))
         " Enter character and start completion.
-        return "\<space>import \<C-x>\<C-o>\<C-r>=jedi#complete_opened(1)\<CR>"
+        return "\<space>import \<C-r>=jedi#complete_string(1)\<CR>"
     endif
     return "\<space>"
 endfunction
