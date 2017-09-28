@@ -161,6 +161,41 @@ shared_examples_for "vim" do
     end
   end
 
+  describe "when line is empty inside a block" do
+    it "is indented like the previous line" do
+      vim.feedkeys 'idef a():\<CR>1\<CR>\<CR>2\<ESC>kcc'
+      indent.should == shiftwidth
+    end
+  end
+
+  describe "when an empty line is after empty line / before non-empty" do
+    it "is indented like the next line" do
+      vim.feedkeys 'idef a():\<CR>1\<CR>\<CR>\<CR>2\<ESC><<kcc'
+      indent.should == 0
+    end
+  end
+
+  describe "when an empty line is after empty line / before non-empty (nested)" do
+    it "is indented like the next line" do
+      vim.feedkeys 'idef a():\<CR>1\<CR>\<CR>\<CR>\<ESC>0i\<TAB>2\<ESC>kcc'
+      indent.should == shiftwidth
+    end
+  end
+
+  describe "when line is empty inside a block following multi-line statement" do
+    it "is indented like the previous line" do
+      vim.feedkeys 'idef a():\<CR>x = (1 +\<CR>2)\<CR>\<CR>y\<ESC>kcc'
+      indent.should == shiftwidth
+    end
+  end
+
+  describe "when line is empty inside a block following stop statement" do
+    it "is indented like the previous line minus shiftwidth" do
+      vim.feedkeys 'iif x:\<CR>if y:\<CR>pass\<CR>\<CR>z\<ESC>kcc'
+      indent.should == shiftwidth
+    end
+  end
+
   describe "when using simple control structures" do
       it "indents shiftwidth spaces" do
           vim.feedkeys 'iwhile True:\<CR>pass'
@@ -385,6 +420,17 @@ shared_examples_for "vim" do
 end
 
 shared_examples_for "multiline strings" do
+  before(:each) {
+    # clear buffer
+    vim.normal 'gg"_dG'
+
+    # Insert two blank lines.
+    # The first line is a corner case in this plugin that would shadow the
+    # correct behaviour of other tests. Thus we explicitly jump to the first
+    # line when we require so.
+    vim.feedkeys 'i\<CR>\<CR>\<ESC>'
+  }
+
   describe "when after an '(' that is followed by an unfinished string" do
     before { vim.feedkeys 'itest("""' }
 
@@ -519,6 +565,12 @@ describe "vim for cython" do
     vim.command "enew"
     vim.command "set ft=cython"
     vim.command "runtime indent/python.vim"
+
+    # Insert two blank lines.
+    # The first line is a corner case in this plugin that would shadow the
+    # correct behaviour of other tests. Thus we explicitly jump to the first
+    # line when we require so.
+    vim.feedkeys 'i\<CR>\<CR>\<ESC>'
   }
 
   describe "when using a cdef function definition" do
