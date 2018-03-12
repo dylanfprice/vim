@@ -6,7 +6,7 @@ call pathogen#helptags()
 set guifont=Monospace\ 12
 
 " Change colorscheme
-set background=dark
+set background=light
 colorscheme solarized
 set t_Co=256
 
