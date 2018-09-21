@@ -1,5 +1,11 @@
 require 'vimrunner'
 require 'vimrunner/rspec'
+require 'vimrunner/server'
+
+# Explicitly enable usage of "should".
+RSpec.configure do |config|
+    config.expect_with(:rspec) { |c| c.syntax = :should }
+end
 
 Vimrunner::RSpec.configure do |config|
   # Use a single Vim instance for the test suite. Set to false to use an
@@ -8,15 +14,23 @@ Vimrunner::RSpec.configure do |config|
   config.reuse_server = ENV['VIMRUNNER_REUSE_SERVER'] == '1' ? true : false
 
   config.start_vim do
-    vim = config.reuse_server ? Vimrunner.start_gvim : Vimrunner.start
+    exe = config.reuse_server ? Vimrunner::Platform.gvim : Vimrunner::Platform.vim
+    vimrc = File.expand_path("../vimrc", __FILE__)
+    vim = Vimrunner::Server.new(:executable => exe,
+                                :vimrc => vimrc).start
+    # More friendly killing.
+    # Otherwise profiling information might not be written.
+    def vim.kill
+      normal(':qall!<CR>')
+
+      Timeout.timeout(5) do
+        sleep 0.1 while server.running?
+      end
+    end
+
     plugin_path = File.expand_path('../..', __FILE__)
-
-    # add_plugin appends the path to the rtp... :(
-    # vim.add_plugin(plugin_path, 'indent/python.vim')
-
     vim.command "set rtp^=#{plugin_path}"
-    vim.command "runtime syntax/python.vim"
-    vim.command "runtime indent/python.vim"
+    vim.command "set filetype=python"
 
     def shiftwidth
       @shiftwidth ||= vim.echo("exists('*shiftwidth') ? shiftwidth() : &sw").to_i
@@ -41,6 +55,14 @@ Vimrunner::RSpec.configure do |config|
     def multiline_indent(prev, default)
       i = vim.echo("get(g:, 'python_pep8_indent_multiline_string', 0)").to_i
       return (i == -2 ? default : i), i < 0 ? (i == -1 ? prev : default) : i
+    end
+    def hang_closing
+      i = vim.echo("get(g:, 'python_pep8_indent_hang_closing', 0)").to_i
+      return (i != 0)
+    end
+    def set_hang_closing(value)
+      i = value ? 1 : 0
+      vim.command("let g:python_pep8_indent_hang_closing=#{i}")
     end
 
     vim

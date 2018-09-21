@@ -1,8 +1,10 @@
 vim-python-pep8-indent
 ======================
 
-.. image:: https://travis-ci.org/Vimjas/vim-python-pep8-indent.png?branch=master
-   :target: https://travis-ci.org/Vimjas/vim-python-pep8-indent
+.. image:: https://circleci.com/gh/Vimjas/vim-python-pep8-indent.svg?style=svg
+  :target: https://circleci.com/gh/Vimjas/vim-python-pep8-indent
+.. image:: https://codecov.io/gh/Vimjas/vim-python-pep8-indent/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/Vimjas/vim-python-pep8-indent
 
 This small script modifies Vim_’s indentation behavior to comply with PEP8_ and my aesthetic preferences.
 Most importantly::
@@ -21,6 +23,8 @@ and::
 Installation
 ------------
 
+Install the plugin using your favorite plugin manager / method, a few examples
+follow:
 
 Pathogen
 ^^^^^^^^
@@ -73,6 +77,47 @@ With content already, it will be aligned to the opening parenthesis::
                         _
 
 Existing indentation (including ``0``) in multiline strings will be kept, so this setting only applies to the indentation of new/empty lines.
+
+g:python_pep8_indent_hang_closing
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Control closing bracket indentation with ``python_pep8_indent_hang_closing``, set globally or per buffer.
+
+By default (set to ``0``), closing brackets line up with the opening line::
+
+   my_list = [
+       1, 2, 3,
+       4, 5, 6,
+   ]
+   result = some_function_that_takes_arguments(
+       'a', 'b', 'c',
+       'd', 'e', 'f',
+   )
+
+With ``python_pep8_indent_hang_closing = 1``, closing brackets line up with the items::
+
+   my_list = [
+       1, 2, 3,
+       4, 5, 6,
+       ]
+   result = some_function_that_takes_arguments(
+       'a', 'b', 'c',
+       'd', 'e', 'f',
+       )
+
+
+Troubleshooting
+---------------
+
+In case it is not working, please make sure your Vim is configured to load
+indent files (``filetype indent on``).
+This is typically the case when using a plugin manager, but check its docs.
+
+Check ``:verbose set indentexpr?`` in a Python file, which should show
+something like the following:
+
+  indentexpr=GetPythonPEPIndent(v:lnum)
+        Last set from ~/…/plugged/vim-python-pep8-indent/indent/python.vim
 
 
 Notes
