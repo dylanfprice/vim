@@ -7,7 +7,7 @@ set guifont=Monospace\ 12
 
 " Change colorscheme
 set t_Co=256
-set background=dark
+set background=light
 colorscheme solarized
 
 " Allow setting syntax and stuff in modeline
