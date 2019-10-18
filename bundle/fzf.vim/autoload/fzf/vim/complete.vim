@@ -23,6 +23,7 @@
 
 let s:cpo_save = &cpo
 set cpo&vim
+let s:is_win = has('win32') || has('win64')
 
 function! s:extend(base, extra)
   let base = copy(a:base)
@@ -48,7 +49,7 @@ endif
 function! fzf#vim#complete#word(...)
   return fzf#vim#complete(s:extend({
     \ 'source': 'cat /usr/share/dict/words'},
-    \ get(a:000, 0, g:fzf#vim#default_layout)))
+    \ get(a:000, 0, fzf#wrap())))
 endfunction
 
 " ----------------------------------------------------------------------------
@@ -58,25 +59,26 @@ endfunction
 " ----------------------------------------------------------------------------
 function! s:file_split_prefix(prefix)
   let expanded = expand(a:prefix)
+  let slash = (s:is_win && !&shellslash) ? '\\' : '/'
   return isdirectory(expanded) ?
     \ [expanded,
-    \  substitute(a:prefix, '/*$', '/', ''),
+    \  substitute(a:prefix, '[/\\]*$', slash, ''),
     \  ''] :
     \ [fnamemodify(expanded, ':h'),
-    \  substitute(fnamemodify(a:prefix, ':h'), '/*$', '/', ''),
+    \  substitute(fnamemodify(a:prefix, ':h'), '[/\\]*$', slash, ''),
     \  fnamemodify(expanded, ':t')]
 endfunction
 
 function! s:file_source(prefix)
   let [dir, head, tail] = s:file_split_prefix(a:prefix)
   return printf(
-    \ "cd %s && ".s:file_cmd." | sed 's:^:%s:'",
-    \ shellescape(dir), empty(a:prefix) || a:prefix == tail ? '' : head)
+    \ "cd %s && ".s:file_cmd." | sed %s",
+    \ fzf#shellescape(dir), fzf#shellescape('s:^:'.(empty(a:prefix) || a:prefix == tail ? '' : head).':'))
 endfunction
 
 function! s:file_options(prefix)
   let [_, head, tail] = s:file_split_prefix(a:prefix)
-  return printf('--prompt %s --query %s', shellescape(head), shellescape(tail))
+  return ['--prompt', head, '--query', tail]
 endfunction
 
 function! s:fname_prefix(str)
@@ -128,7 +130,7 @@ function! fzf#vim#complete#path(command, ...)
   return fzf#vim#complete(s:extend({
   \ 'prefix':  s:function('s:fname_prefix'),
   \ 'source':  s:function('s:file_source'),
-  \ 'options': s:function('s:file_options')}, get(a:000, 0, g:fzf#vim#default_layout)))
+  \ 'options': s:function('s:file_options')}, get(a:000, 0, fzf#wrap())))
 endfunction
 
 " ----------------------------------------------------------------------------
@@ -136,21 +138,24 @@ endfunction
 " <plug>(fzf-complete-buffer-line)
 " ----------------------------------------------------------------------------
 function! s:reduce_line(lines)
-  return join(split(a:lines[0], '\t\zs')[2:], '')
+  return join(split(a:lines[0], '\t\zs')[3:], '')
 endfunction
 
+
 function! fzf#vim#complete#line(...)
+  let [display_bufnames, lines] = fzf#vim#_lines(0)
+  let nth = display_bufnames ? 4 : 3
   return fzf#vim#complete(s:extend({
   \ 'prefix':  '^.*$',
-  \ 'source':  fzf#vim#_lines(0),
-  \ 'options': '--tiebreak=index --ansi --nth 3..',
-  \ 'reducer': s:function('s:reduce_line')}, get(a:000, 0, g:fzf#vim#default_layout)))
+  \ 'source':  lines,
+  \ 'options': '--tiebreak=index --ansi --nth '.nth.'.. --tabstop=1',
+  \ 'reducer': s:function('s:reduce_line')}, get(a:000, 0, fzf#wrap())))
 endfunction
 
 function! fzf#vim#complete#buffer_line(...)
-  call fzf#vim#complete(s:extend({
+  return fzf#vim#complete(s:extend({
   \ 'prefix': '^.*$',
-  \ 'source': s:uniq(getline(1, '$'))}, get(a:000, 0, g:fzf#vim#default_layout)))
+  \ 'source': fzf#vim#_uniq(getline(1, '$'))}, get(a:000, 0, fzf#wrap())))
 endfunction
 
 let &cpo = s:cpo_save
