@@ -1,7 +1,3 @@
-" Set up pathogen
-call pathogen#infect()
-call pathogen#helptags()
-
 " Set font size for gvim
 set guifont=Monospace\ 12
 

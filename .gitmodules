@@ -1,0 +1,33 @@
+[submodule "pack/plugins/start/fzf.vim"]
+	path = pack/plugins/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
+[submodule "pack/plugins/start/syntastic"]
+	path = pack/plugins/start/syntastic
+	url = https://github.com/vim-syntastic/syntastic.git
+[submodule "pack/plugins/start/vim-javascript"]
+	path = pack/plugins/start/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
+[submodule "pack/plugins/start/vim-tmux-navigator"]
+	path = pack/plugins/start/vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator.git
+[submodule "pack/plugins/start/vim-vinegar"]
+	path = pack/plugins/start/vim-vinegar
+	url = https://github.com/tpope/vim-vinegar.git
+[submodule "pack/plugins/start/jedi-vim"]
+	path = pack/plugins/start/jedi-vim
+	url = https://github.com/davidhalter/jedi-vim.git
+[submodule "pack/plugins/start/vim-colors-solarized"]
+	path = pack/plugins/start/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized.git
+[submodule "pack/plugins/start/vim-isort"]
+	path = pack/plugins/start/vim-isort
+	url = https://github.com/fisadev/vim-isort.git
+[submodule "pack/plugins/start/vim-sensible"]
+	path = pack/plugins/start/vim-sensible
+	url = https://github.com/tpope/vim-sensible.git
+[submodule "pack/plugins/start/vim-toml"]
+	path = pack/plugins/start/vim-toml
+	url = https://github.com/cespare/vim-toml.git
+[submodule "pack/plugins/start/vim-yaml"]
+	path = pack/plugins/start/vim-yaml
+	url = https://github.com/stephpy/vim-yaml.git
