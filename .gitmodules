@@ -31,3 +31,9 @@
 [submodule "pack/plugins/start/vim-yaml"]
 	path = pack/plugins/start/vim-yaml
 	url = https://github.com/stephpy/vim-yaml.git
+[submodule "pack/plugins/start/typescript-vim"]
+	path = pack/plugins/start/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim.git
+[submodule "pack/plugins/start/vim-tsx"]
+	path = pack/plugins/start/vim-tsx
+	url = https://github.com/ianks/vim-tsx.git
