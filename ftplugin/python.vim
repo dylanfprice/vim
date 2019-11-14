@@ -5,7 +5,7 @@ let g:syntastic_python_checkers = ["flake8"]
 
 let g:black_virtualenv = system("echo $VIRTUAL_ENV | tr -d '\n'")
 :packadd black
-nmap <leader>f :Black<CR>
+nmap <leader>l :Black<CR>
 
 set foldmethod=indent
 
