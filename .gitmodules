@@ -19,9 +19,6 @@
 [submodule "pack/plugins/start/vim-colors-solarized"]
 	path = pack/plugins/start/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
-[submodule "pack/plugins/start/vim-isort"]
-	path = pack/plugins/start/vim-isort
-	url = https://github.com/fisadev/vim-isort.git
 [submodule "pack/plugins/start/vim-sensible"]
 	path = pack/plugins/start/vim-sensible
 	url = https://github.com/tpope/vim-sensible.git
@@ -37,3 +34,12 @@
 [submodule "pack/plugins/start/vim-tsx"]
 	path = pack/plugins/start/vim-tsx
 	url = https://github.com/ianks/vim-tsx.git
+[submodule "pack/plugins/opt/black"]
+	path = pack/plugins/opt/black
+	url = https://github.com/psf/black.git
+[submodule "pack/plugins/opt/vim-isort"]
+	path = pack/plugins/opt/vim-isort
+	url = https://github.com/fisadev/vim-isort.git
+[submodule "pack/plugins/opt/jedi-vim"]
+	path = pack/plugins/opt/jedi-vim
+	url = https://github.com/davidhalter/jedi-vim.git

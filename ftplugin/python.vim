@@ -1,11 +1,14 @@
-" also see after/ftplugin/python.vim
-
+:packadd vim-isort
 nmap <leader>i :Isort<CR>
 
-let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_checkers = ["flake8"]
+
+let g:black_virtualenv = system("dirname $(dirname $(poetry run which python)) | tr -d '\n'")
+:packadd black
 
 set foldmethod=indent
 
+:packadd jedi-vim
 let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures = "2"
 let g:jedi#goto_command = ""
