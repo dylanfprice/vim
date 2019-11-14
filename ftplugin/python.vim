@@ -5,6 +5,7 @@ let g:syntastic_python_checkers = ["flake8"]
 
 let g:black_virtualenv = system("dirname $(dirname $(poetry run which python)) | tr -d '\n'")
 :packadd black
+nmap <leader>f :Black<CR>
 
 set foldmethod=indent
 
