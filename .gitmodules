@@ -37,9 +37,6 @@
 [submodule "pack/plugins/opt/black"]
 	path = pack/plugins/opt/black
 	url = https://github.com/psf/black.git
-[submodule "pack/plugins/opt/vim-isort"]
-	path = pack/plugins/opt/vim-isort
+[submodule "pack/plugins/start/vim-isort"]
+	path = pack/plugins/start/vim-isort
 	url = https://github.com/fisadev/vim-isort.git
-[submodule "pack/plugins/opt/jedi-vim"]
-	path = pack/plugins/opt/jedi-vim
-	url = https://github.com/davidhalter/jedi-vim.git
