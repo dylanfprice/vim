@@ -1,4 +1,3 @@
-:packadd vim-isort
 nmap <leader>i :Isort<CR>
 
 let g:syntastic_python_checkers = ["flake8"]
@@ -9,7 +8,6 @@ nmap <leader>l :Black<CR>
 
 set foldmethod=indent
 
-:packadd jedi-vim
 let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures = "2"
 let g:jedi#goto_command = ""
