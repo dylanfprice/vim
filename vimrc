@@ -87,9 +87,6 @@ nmap <leader>l :ALEFix<CR>:w<CR>
 let g:ale_enabled = 0
 let g:ale_fix_on_save = 1
 
-" remove trailing spaces on save
-autocmd FileType clojure,python,javascript autocmd BufWritePre <buffer> :%s/\s\+$//e
-
 " Autogenerate documentation tags
 packloadall
 silent! helptags ALL
