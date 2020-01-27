@@ -80,15 +80,16 @@ let g:fzf_action = {
 
 " netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  " ignore dotfiles by default
-let g:netrw_localrmdir='rm -r'
+let g:netrw_localrmdir = 'rm -r'
 
-" syntastic
-nnoremap <leader>l :SyntasticCheck<CR>
-let g:syntastic_mode_map = {'mode': 'passive', 'active_filetypes':[], 'passive_filetypes': []}
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+" ale
+nmap <leader>l :ALEFix<CR>:w<CR>
+let g:ale_enabled = 0
+let g:ale_fix_on_save = 1
 
 " remove trailing spaces on save
 autocmd FileType clojure,python,javascript autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+" Autogenerate documentation tags
+packloadall
+silent! helptags ALL

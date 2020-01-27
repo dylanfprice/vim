@@ -1,9 +1,6 @@
 [submodule "pack/plugins/start/fzf.vim"]
 	path = pack/plugins/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
-[submodule "pack/plugins/start/syntastic"]
-	path = pack/plugins/start/syntastic
-	url = https://github.com/vim-syntastic/syntastic.git
 [submodule "pack/plugins/start/vim-javascript"]
 	path = pack/plugins/start/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
@@ -28,18 +25,9 @@
 [submodule "pack/plugins/start/vim-yaml"]
 	path = pack/plugins/start/vim-yaml
 	url = https://github.com/stephpy/vim-yaml.git
-[submodule "pack/plugins/start/typescript-vim"]
-	path = pack/plugins/start/typescript-vim
-	url = https://github.com/leafgarland/typescript-vim.git
-[submodule "pack/plugins/start/vim-tsx"]
-	path = pack/plugins/start/vim-tsx
-	url = https://github.com/ianks/vim-tsx.git
-[submodule "pack/plugins/opt/black"]
-	path = pack/plugins/opt/black
-	url = https://github.com/psf/black.git
-[submodule "pack/plugins/start/vim-isort"]
-	path = pack/plugins/start/vim-isort
-	url = https://github.com/fisadev/vim-isort.git
 [submodule "pack/plugins/start/vim-graphql"]
 	path = pack/plugins/start/vim-graphql
 	url = https://github.com/jparise/vim-graphql.git
+[submodule "pack/plugins/start/ale"]
+	path = pack/plugins/start/ale
+	url = https://github.com/dense-analysis/ale.git

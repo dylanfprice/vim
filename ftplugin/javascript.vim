@@ -2,5 +2,4 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exec = '~/.local/bin/local-eslint'
+let b:ale_fixers = ['eslint', 'remove_trailing_lines', 'trim_whitespace']
