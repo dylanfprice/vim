@@ -2,9 +2,11 @@
 set guifont=Monospace\ 12
 
 " Change colorscheme
-set t_Co=256
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=light
-colorscheme solarized
+colorscheme solarized8
 
 " Allow setting syntax and stuff in modeline
 set modeline
