@@ -34,3 +34,9 @@
 [submodule "pack/plugins/opt/ghost-text"]
 	path = pack/plugins/opt/ghost-text
 	url = https://github.com/pandysong/ghost-text.vim.git
+[submodule "pack/plugins/start/fireplace"]
+	path = pack/plugins/start/fireplace
+	url = https://tpope.io/vim/fireplace.git
+[submodule "pack/plugins/start/vim-cljfmt"]
+	path = pack/plugins/start/vim-cljfmt
+	url = https://github.com/venantius/vim-cljfmt.git
