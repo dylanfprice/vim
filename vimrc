@@ -72,6 +72,11 @@ set completeopt=menu,longest,preview
 
 set wildignore+=*.pyc "ignore pyc files
 
+" clipboard on wayland
+xnoremap "+y y:call system("wl-copy", @")<cr>
+nnoremap "+p :let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<cr>p
+nnoremap "*p :let @"=substitute(system("wl-paste --no-newline --primary"), '<C-v><C-m>', '', 'g')<cr>p
+
 " FZF settings
 set rtp+=~/.fzf
 nmap <leader>f :Files<CR>
