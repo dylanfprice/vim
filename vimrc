@@ -43,7 +43,7 @@ set smartcase
 set title
 
 " Make sure we source bash config
-set shell=/bin/bash\ -il
+set shell=/bin/bash\ -l
 
 " Scroll before cursor hits very bottom to maintain more context
 set scrolloff=3
