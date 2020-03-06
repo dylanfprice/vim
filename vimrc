@@ -42,6 +42,9 @@ set smartcase
 " Set the terminal title
 set title
 
+" Make sure we source bash config
+set shell=/bin/bash\ -il
+
 " Scroll before cursor hits very bottom to maintain more context
 set scrolloff=3
 
