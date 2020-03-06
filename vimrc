@@ -72,8 +72,10 @@ set wildignore+=*.pyc "ignore pyc files
 
 " FZF settings
 set rtp+=~/.fzf
-nmap <leader>f :Files<CR>
-nmap <leader><leader> :Buffers<CR>
+nmap <C-w>; :Buffers<CR>
+nmap <C-w>' :Files<CR>
+tmap <C-w>; <C-w>:Buffers<CR>
+tmap <C-w>' <C-w>:Files<CR>
 let g:fzf_action = {
   \ 'ctrl-o': 'split',
   \ 'ctrl-v': 'vsplit' }
