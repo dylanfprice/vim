@@ -7,9 +7,6 @@
 [submodule "pack/plugins/start/vim-vinegar"]
 	path = pack/plugins/start/vim-vinegar
 	url = https://github.com/tpope/vim-vinegar.git
-[submodule "pack/plugins/start/jedi-vim"]
-	path = pack/plugins/start/jedi-vim
-	url = https://github.com/davidhalter/jedi-vim.git
 [submodule "pack/plugins/start/vim-sensible"]
 	path = pack/plugins/start/vim-sensible
 	url = https://github.com/tpope/vim-sensible.git
