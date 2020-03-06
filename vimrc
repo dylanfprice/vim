@@ -91,6 +91,10 @@ let g:netrw_localrmdir = 'rm -r'
 let g:ale_enabled = 0
 let g:ale_fix_on_save = 1
 
+" poetv
+let g:poetv_executables = ['poetry']
+let g:poetv_auto_activate = 1
+
 " Autogenerate documentation tags
 packloadall
 silent! helptags ALL
