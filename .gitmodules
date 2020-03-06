@@ -38,3 +38,7 @@
 [submodule "pack/plugins/start/vim-cljfmt"]
 	path = pack/plugins/start/vim-cljfmt
 	url = https://github.com/venantius/vim-cljfmt.git
+[submodule "pack/plugins/start/poet-v"]
+	path = pack/plugins/start/poet-v
+	url = https://github.com/petobens/poet-v.git
+	ignore = dirty
