@@ -28,10 +28,6 @@
 [submodule "pack/plugins/start/vim-solarized8"]
 	path = pack/plugins/start/vim-solarized8
 	url = https://github.com/lifepillar/vim-solarized8.git
-[submodule "pack/plugins/opt/ghost-text"]
-	path = pack/plugins/opt/ghost-text
-	url = https://github.com/pandysong/ghost-text.vim.git
-    ignore = dirty
 [submodule "pack/plugins/start/fireplace"]
 	path = pack/plugins/start/fireplace
 	url = https://tpope.io/vim/fireplace.git
