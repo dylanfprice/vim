@@ -85,7 +85,6 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  " ignore dotfiles by default
 let g:netrw_localrmdir = 'rm -r'
 
 " ale
-nmap <leader>l :ALEFix<CR>:w<CR>
 let g:ale_enabled = 0
 let g:ale_fix_on_save = 1
 
