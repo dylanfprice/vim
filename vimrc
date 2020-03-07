@@ -49,13 +49,6 @@ set scrolloff=3
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
-" allows incsearch highlighting for range commands
-" e.g. ?pattern$t copies the line that matches pattern to below the current
-" line
-cnoremap $t <CR>:t''<CR>
-cnoremap $m <CR>:m''<CR>
-cnoremap $d <CR>:d<CR>``
-
 " Less interruptive prompts
 set shortmess=atI
 
