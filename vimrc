@@ -77,9 +77,9 @@ let g:fzf_action = {
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  " ignore dotfiles by default
 let g:netrw_localrmdir = 'rm -r'
 
-" Autogenerate documentation tags
-packloadall
-silent! helptags ALL
+" alias for :term that auto-closes on :qa
+command! -nargs=* Terminal terminal ++kill=term <args>
+
 
 " ale
 let g:ale_enabled = 0
@@ -87,6 +87,7 @@ let g:ale_fix_on_save = 1
 
 "" Python plugins
 "" (that insist on global vars)
+
 " poetv
 let g:poetv_executables = ['poetry']
 let g:poetv_auto_activate = 1
@@ -103,3 +104,9 @@ let g:jedi#rename_command = ""
 let g:jedi#smart_auto_mappings = 0
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#use_tabs_not_buffers = 0
+
+"" /Python plugins
+
+" Autogenerate documentation tags
+packloadall
+silent! helptags ALL
