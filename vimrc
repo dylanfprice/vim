@@ -84,14 +84,29 @@ let g:fzf_action = {
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  " ignore dotfiles by default
 let g:netrw_localrmdir = 'rm -r'
 
+" Autogenerate documentation tags
+packloadall
+silent! helptags ALL
+
 " ale
 let g:ale_enabled = 0
 let g:ale_fix_on_save = 1
 
+"" Python plugins
+"" (that insist on global vars)
 " poetv
 let g:poetv_executables = ['poetry']
 let g:poetv_auto_activate = 1
 
-" Autogenerate documentation tags
-packloadall
-silent! helptags ALL
+" jedi
+let g:jedi#popup_on_dot = 0
+let g:jedi#show_call_signatures = "2"
+let g:jedi#goto_definitions_command = "<C-]>"
+let g:jedi#goto_assignments_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = ""
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = ""
+let g:jedi#smart_auto_mappings = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#use_tabs_not_buffers = 0
