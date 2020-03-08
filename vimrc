@@ -82,7 +82,9 @@ command! -nargs=* Terminal terminal ++kill=term <args>
 
 
 " ale
-let g:ale_enabled = 0
+let g:ale_enabled = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_insert_leave = 0
 let g:ale_fix_on_save = 1
 
 "" Python plugins
