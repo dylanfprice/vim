@@ -1,6 +1,3 @@
-" Set font size for gvim
-set guifont=Monospace\ 12
-
 " Change colorscheme
 set termguicolors
 set background=light
@@ -27,10 +24,6 @@ au BufWinEnter * silent! loadview
 
 " Don't abandon buffers when they are unloaded
 set hidden
-
-" Set <Leader> and <LocalLeader>
-let mapleader = " "
-let maplocalleader = "\\"
 
 " Make TAB completion in command mode like a shell
 set wildmode=list:longest
@@ -67,19 +60,20 @@ set wildignore+=*.pyc "ignore pyc files
 set rtp+=~/.fzf
 nnoremap <C-w>; :Buffers<CR>
 nnoremap <C-w>' :Files<CR>
-tnoremap <C-w>; <C-w>:Buffers<CR>
-tnoremap <C-w>' <C-w>:Files<CR>
 let g:fzf_action = {
   \ 'ctrl-o': 'split',
   \ 'ctrl-v': 'vsplit' }
 
+" Terminal settings
+tnoremap <C-w>: <C-\><C-N>:
+tnoremap <C-w> <C-\><C-N><C-w>
+tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+autocmd TermOpen * setlocal modified
+autocmd TermOpen * startinsert
+
 " netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  " ignore dotfiles by default
 let g:netrw_localrmdir = 'rm -r'
-
-" alias for :term that auto-closes on :qa
-command! -nargs=* Terminal terminal ++kill=term <args>
-
 
 " ale
 let g:ale_enabled = 1
