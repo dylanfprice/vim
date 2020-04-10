@@ -70,6 +70,7 @@ tnoremap <C-w> <C-\><C-N><C-w>
 tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 autocmd TermOpen * setlocal modified
 autocmd TermOpen * startinsert
+autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
 
 " netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  " ignore dotfiles by default
