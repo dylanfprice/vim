@@ -68,6 +68,7 @@ let g:fzf_action = {
 
 " Terminal settings
 tnoremap <C-w>: <C-\><C-N>:
+nnoremap <C-w>: :
 tnoremap <C-w> <C-\><C-N><C-w>
 tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 autocmd TermOpen * setlocal modified
