@@ -71,6 +71,7 @@ tnoremap <C-w>: <C-\><C-N>:
 nnoremap <C-w>: :
 tnoremap <C-w> <C-\><C-N><C-w>
 tnoremap <expr> <C-w><C-r> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+autocmd TermOpen * setlocal modifiable
 autocmd TermOpen * setlocal modified
 autocmd TermOpen * startinsert
 
