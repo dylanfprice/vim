@@ -41,3 +41,6 @@
 [submodule "pack/plugins/start/jedi-vim"]
 	path = pack/plugins/start/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
+[submodule "pack/plugins/start/vim-gutentags"]
+	path = pack/plugins/start/vim-gutentags
+	url = https://github.com/ludovicchabant/vim-gutentags.git
