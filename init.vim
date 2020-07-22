@@ -98,7 +98,7 @@ let g:poetv_auto_activate = 1
 " jedi
 let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures = "2"
-let g:jedi#goto_definitions_command = "<C-]>"
+let g:jedi#goto_command = "<C-]>"
 let g:jedi#goto_assignments_command = ""
 let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = ""
