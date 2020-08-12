@@ -32,6 +32,9 @@ set wildmode=list:longest
 set ignorecase
 set smartcase
 
+" Don't highlight matches when searching
+set nohlsearch
+
 " Set the terminal title
 set title
 
