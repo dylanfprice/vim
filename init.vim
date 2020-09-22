@@ -99,6 +99,9 @@ let g:gutentags_cache_dir = '~/.cache/gutentags/'
 " poetv
 let g:poetv_executables = ['poetry']
 let g:poetv_auto_activate = 1
+command! -bar -nargs=1 PoetvActivateDir
+    \ :call setbufvar(bufname('%'), 'poetv_dir', '<args>') |
+    \ :call poetv#activate()
 
 " jedi
 let g:jedi#popup_on_dot = 0
