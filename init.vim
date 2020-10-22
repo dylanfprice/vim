@@ -58,6 +58,9 @@ highlight DiffDelete term=reverse cterm=bold ctermbg=red ctermfg=black
 
 " autocomplete behavior
 set completeopt=menu,longest,preview
+set omnifunc=syntaxcomplete#Complete
+imap <buffer> <C-Space> <C-x><C-o>
+imap <buffer> <C-@> <C-Space>
 
 set wildignore+=*.pyc "ignore pyc files
 
