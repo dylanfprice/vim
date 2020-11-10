@@ -1,24 +1,12 @@
 [submodule "pack/plugins/start/fzf.vim"]
 	path = pack/plugins/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
-[submodule "pack/plugins/start/vim-javascript"]
-	path = pack/plugins/start/vim-javascript
-	url = https://github.com/pangloss/vim-javascript.git
 [submodule "pack/plugins/start/vim-vinegar"]
 	path = pack/plugins/start/vim-vinegar
 	url = https://github.com/tpope/vim-vinegar.git
 [submodule "pack/plugins/start/vim-sensible"]
 	path = pack/plugins/start/vim-sensible
 	url = https://github.com/tpope/vim-sensible.git
-[submodule "pack/plugins/start/vim-toml"]
-	path = pack/plugins/start/vim-toml
-	url = https://github.com/cespare/vim-toml.git
-[submodule "pack/plugins/start/vim-yaml"]
-	path = pack/plugins/start/vim-yaml
-	url = https://github.com/stephpy/vim-yaml.git
-[submodule "pack/plugins/start/vim-graphql"]
-	path = pack/plugins/start/vim-graphql
-	url = https://github.com/jparise/vim-graphql.git
 [submodule "pack/plugins/start/ale"]
 	path = pack/plugins/start/ale
 	url = https://github.com/dense-analysis/ale.git
@@ -44,6 +32,6 @@
 [submodule "pack/plugins/start/vim-gutentags"]
 	path = pack/plugins/start/vim-gutentags
 	url = https://github.com/ludovicchabant/vim-gutentags.git
-[submodule "pack/plugins/start/vim-jsx-pretty"]
-	path = pack/plugins/start/vim-jsx-pretty
-	url = https://github.com/MaxMEllon/vim-jsx-pretty.git
+[submodule "pack/plugins/start/vim-polyglot"]
+	path = pack/plugins/start/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot.git
