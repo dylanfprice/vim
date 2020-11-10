@@ -6,14 +6,6 @@ colorscheme solarized8
 " Allow setting syntax and stuff in modeline
 set modeline
 
-" Set tabs to be 4 spaces wide
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set autoindent
-set smartindent
-set expandtab
-
 " Set wrap on and end at full words
 set wrap
 set linebreak
