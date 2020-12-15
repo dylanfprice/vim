@@ -32,8 +32,6 @@ set title
 
 " Scroll before cursor hits very bottom to maintain more context
 set scrolloff=3
-" Once neovim updates to 0.4.4, shouldn't need this anymore.
-autocmd TermOpen * setlocal scrolloff=0
 
 " Scroll the viewport faster
 nnoremap <C-e> 3<C-e>
