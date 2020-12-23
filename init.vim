@@ -111,6 +111,9 @@ let g:jedi#smart_auto_mappings = 0
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#use_tabs_not_buffers = 0
 
+" python-syntax
+let g:python_highlight_space_errors = 0
+
 "" /Python plugins
 
 " Autogenerate documentation tags
