@@ -56,6 +56,8 @@ imap <buffer> <C-@> <C-Space>
 
 set wildignore+=*.pyc "ignore pyc files
 
+set grepprg=rg\ --vimgrep\ --smart-case
+
 " FZF settings
 source /usr/share/doc/fzf/examples/fzf.vim
 nnoremap <C-w>; :Buffers<CR>
