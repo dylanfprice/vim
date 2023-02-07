@@ -1,7 +1,9 @@
 {
-	"javascript.suggestionActions.enabled": false,
-	"eslint.run": "onSave",
-	"eslint.autoFixOnSave": true,
-	"python.formatting.provider": "black",
-	"python.linting.flake8Enabled": true
+  "coc.preferences.formatOnSave": true,
+  "javascript.suggestionActions.enabled": false,
+  "signature.hideOnTextChange": true,
+  "eslint.run": "onSave",
+  "eslint.autoFixOnSave": true,
+  "python.formatting.provider": "black",
+  "python.linting.flake8Enabled": true
 }
