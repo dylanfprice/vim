@@ -84,6 +84,18 @@ autocmd TermOpen * startinsert
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  " ignore dotfiles by default
 let g:netrw_localrmdir = 'rm -r'
 
+" coc.nvim
+set tagfunc=CocTagFunc
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
 " gutentags
 let g:gutentags_cache_dir = '~/.cache/gutentags/'
 
