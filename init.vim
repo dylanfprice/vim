@@ -84,12 +84,6 @@ autocmd TermOpen * startinsert
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  " ignore dotfiles by default
 let g:netrw_localrmdir = 'rm -r'
 
-" ale
-let g:ale_enabled = 1
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_insert_leave = 0
-let g:ale_fix_on_save = 1
-
 " gutentags
 let g:gutentags_cache_dir = '~/.cache/gutentags/'
 
