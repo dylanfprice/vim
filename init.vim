@@ -57,7 +57,7 @@ imap <buffer> <C-@> <C-Space>
 set wildignore+=*.pyc "ignore pyc files
 
 " FZF settings
-set rtp+=~/.fzf
+source /usr/share/doc/fzf/examples/fzf.vim
 nnoremap <C-w>; :Buffers<CR>
 nnoremap <C-w><C-;> :Buffers<CR>
 nnoremap <C-w>' :Files<CR>
