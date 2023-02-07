@@ -112,7 +112,7 @@ function! ShowDocumentation()
 endfunction
 
 " gutentags
-let g:gutentags_cache_dir = '~/.cache/gutentags/'
+let g:gutentags_cache_dir = '~/.cache/gutentags'
 
 "" Python plugins
 "" (that insist on global vars)
