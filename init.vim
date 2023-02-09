@@ -113,6 +113,9 @@ function! ShowDocumentation()
   endif
 endfunction
 
+command CocRename
+    \ :call CocActionAsync('rename')
+
 " gutentags
 let g:gutentags_cache_dir = '~/.cache/gutentags'
 

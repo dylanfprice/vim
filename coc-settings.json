@@ -3,6 +3,11 @@
   "hover.target": "preview",
   "javascript.suggestionActions.enabled": false,
   "signature.hideOnTextChange": true,
+  "list.insertMappings": {
+    "<Up>": "do:previous",
+    "<Down>": "do:next",
+    "<C-n>": "do:togglemode"
+  },
   "eslint.run": "onSave",
   "eslint.autoFixOnSave": true,
   "python.formatting.provider": "black",
