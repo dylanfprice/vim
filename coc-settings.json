@@ -1,5 +1,6 @@
 {
   "coc.preferences.formatOnSave": true,
+  "hover.target": "preview",
   "javascript.suggestionActions.enabled": false,
   "signature.hideOnTextChange": true,
   "eslint.run": "onSave",
