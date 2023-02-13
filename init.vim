@@ -88,13 +88,12 @@ let g:netrw_localrmdir = 'rm -r'
 
 " coc.nvim
 set tagfunc=CocTagFunc
+autocmd BufWritePost * call CocActionAsync('diagnosticRefresh')
 
 xmap if <Plug>(coc-funcobj-i)
 omap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
 omap af <Plug>(coc-funcobj-a)
-
-nmap <silent> gr <Plug>(coc-references)
 
 nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
@@ -115,6 +114,8 @@ endfunction
 
 command CocRename
     \ :call CocActionAsync('rename')
+command CocReferences
+    \ :call CocActionAsync('references')
 
 " gutentags
 let g:gutentags_cache_dir = '~/.cache/gutentags'

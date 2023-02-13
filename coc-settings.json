@@ -1,15 +1,20 @@
 {
   "coc.preferences.formatOnSave": true,
+  "diagnostic.autoRefresh": true,
+  "diagnostic.messageDelay": 750,
   "hover.target": "preview",
-  "javascript.suggestionActions.enabled": false,
   "signature.hideOnTextChange": true,
+  "suggest.minTriggerInputLength": 3,
   "list.insertMappings": {
     "<Up>": "do:previous",
     "<Down>": "do:next",
     "<C-n>": "do:togglemode"
   },
+  // javascript
   "eslint.run": "onSave",
   "eslint.autoFixOnSave": true,
+  "javascript.suggestionActions.enabled": false,
+  // python
   "python.formatting.provider": "black",
   "python.linting.flake8Enabled": true
 }
