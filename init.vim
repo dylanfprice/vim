@@ -117,7 +117,7 @@ endfunction
 command CocRename
     \ :call CocActionAsync('rename')
 command CocReferences
-    \ :call CocActionAsync('references')
+    \ :call CocActionAsync('jumpReferences')
 
 " gutentags
 let g:gutentags_cache_dir = '~/.cache/gutentags'
