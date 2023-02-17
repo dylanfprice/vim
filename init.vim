@@ -88,7 +88,7 @@ let g:netrw_localrmdir = 'rm -r'
 
 " coc.nvim
 set tagfunc=CocTagFunc
-autocmd BufWritePost * call CocActionAsync('diagnosticRefresh')
+autocmd BufWritePre,BufWritePost * call CocActionAsync('diagnosticRefresh')
 
 xmap if <Plug>(coc-funcobj-i)
 omap if <Plug>(coc-funcobj-i)

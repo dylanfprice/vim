@@ -1,6 +1,7 @@
 {
   "coc.preferences.formatOnSave": true,
-  "diagnostic.autoRefresh": true,
+  "diagnostic.autoRefresh": false,
+  "diagnostic.checkCurrentLine": true,
   "diagnostic.messageDelay": 750,
   "hover.target": "preview",
   "signature.hideOnTextChange": true,
