@@ -1,6 +1,6 @@
 {
   "coc.preferences.formatOnSave": true,
-  "diagnostic.autoRefresh": false,
+  "diagnostic.autoRefresh": true,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.messageDelay": 750,
   "hover.target": "preview",

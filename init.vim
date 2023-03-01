@@ -88,7 +88,6 @@ let g:netrw_localrmdir = 'rm -r'
 
 " coc.nvim
 set tagfunc=CocTagFunc
-autocmd BufWritePre,BufWritePost * call CocActionAsync('diagnosticRefresh')
 
 xmap if <Plug>(coc-funcobj-i)
 omap if <Plug>(coc-funcobj-i)
@@ -105,6 +104,7 @@ vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(
 vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 
 nnoremap <silent> K :call ShowDocumentation()<CR>
+nnoremap <silent> gd :CocDiagnostics<CR>
 
 function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')
