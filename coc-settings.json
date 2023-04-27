@@ -11,6 +11,7 @@
     "<Down>": "do:next",
     "<C-n>": "do:togglemode"
   },
+  "outline.sortBy": "category",
   // javascript
   "eslint.run": "onSave",
   "eslint.autoFixOnSave": true,
