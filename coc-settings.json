@@ -11,7 +11,11 @@
     "<Down>": "do:next",
     "<C-n>": "do:togglemode"
   },
-  "outline.sortBy": "category",
+  "outline.sortBy": "position",
+  "outline.expandLevel": 0,
+  "outline.autoWidth": true,
+  "tree.key.selectNext": "<C-n>",
+  "tree.key.selectPrevious": "<C-p>",
   // javascript
   "eslint.run": "onSave",
   "eslint.autoFixOnSave": true,
