@@ -22,5 +22,6 @@
   "javascript.suggestionActions.enabled": false,
   // python
   "python.formatting.provider": "black",
-  "python.linting.flake8Enabled": true
+  "python.linting.flake8Enabled": true,
+  "pyright.organizeimports.provider": "isort"
 }

@@ -130,6 +130,8 @@ command CocRename
 command CocReferences
     \ :call CocActionAsync('jumpReferences')
 
+autocmd BufWritePre *.py call CocAction('organizeImport')
+
 " gutentags
 let g:gutentags_cache_dir = '~/.cache/gutentags'
 
