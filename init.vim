@@ -42,12 +42,6 @@ nnoremap <C-y> 3<C-y>
 " Less interruptive prompts
 set shortmess=atI
 
-" Set vimdiff colors to be nicer
-highlight DiffAdd term=reverse cterm=bold ctermbg=green ctermfg=white
-highlight DiffChange term=reverse cterm=bold ctermbg=cyan ctermfg=black
-highlight DiffText term=reverse cterm=bold ctermbg=gray ctermfg=black
-highlight DiffDelete term=reverse cterm=bold ctermbg=red ctermfg=black
-
 " autocomplete behavior
 set completeopt=menu,longest,preview
 set omnifunc=syntaxcomplete#Complete
