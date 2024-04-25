@@ -75,6 +75,10 @@ autocmd TermOpen * setlocal hidden
 autocmd TermOpen * setlocal modifiable
 autocmd TermOpen * setlocal modified
 autocmd TermOpen * startinsert
+" Due to https://github.com/neovim/neovim/issues/3681, can't change cursor
+" shape in term. Change the color so we at least can tell if we are in
+" insert or normal mode within a terminal buffer.
+highlight TermCursor guifg=#dc322f
 
 " netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  " ignore dotfiles by default
