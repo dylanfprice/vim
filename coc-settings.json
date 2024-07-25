@@ -22,7 +22,7 @@
   "eslint.autoFixOnSave": true,
   "javascript.suggestionActions.enabled": false,
   // python
-  "python.formatting.provider": "black",
-  "python.linting.flake8Enabled": true,
-  "pyright.organizeimports.provider": "isort",
+  "python.formatting.provider": "ruff",
+  "python.linting.ruffEnabled": true,
+  "pyright.organizeimports.provider": "ruff",
 }
