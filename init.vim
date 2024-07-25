@@ -133,19 +133,12 @@ autocmd BufWritePre *.py call CocAction('organizeImport')
 " gutentags
 let g:gutentags_cache_dir = '~/.cache/gutentags'
 
-"" Python plugins
-
-" poetv
-let g:poetv_executables = ['poetry']
-let g:poetv_auto_activate = 1
-command! -bar -nargs=1 PoetvActivateDir
-    \ :call setbufvar(bufname('%'), 'poetv_dir', '<args>') |
-    \ :call poetv#activate()
+"" Python
 
 " python-syntax
 let g:python_highlight_space_errors = 0
 
-"" /Python plugins
+"" /Python
 
 " Autogenerate documentation tags
 packloadall
