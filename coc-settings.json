@@ -24,5 +24,4 @@
   // python
   "python.formatting.provider": "ruff",
   "python.linting.ruffEnabled": true,
-  "pyright.organizeimports.provider": "ruff",
 }
