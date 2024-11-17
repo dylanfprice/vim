@@ -20,6 +20,7 @@
   // javascript
   "eslint.run": "onSave",
   "eslint.autoFixOnSave": true,
+  "eslint.experimental.useFlatConfig": true,
   "javascript.suggestionActions.enabled": false,
   // python
   "python.formatting.provider": "ruff",
