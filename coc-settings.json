@@ -26,4 +26,14 @@
   "python.formatting.provider": "ruff",
   "python.linting.ruffEnabled": true,
   "pyright.organizeimports.provider": "ruff",
+  "coc.preferences.extensionUpdateCheck": "weekly"
+  /*
+  Extenions:
+  - coc-eslint
+  - coc-json
+  - coc-css
+  - coc-tsserver
+  - coc-pyright
+  - @yaegassy/coc-marksman
+  */
 }
