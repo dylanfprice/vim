@@ -63,8 +63,8 @@ tnoremap <C-w><C-;> <C-\><C-N>:Buffers<CR>
 tnoremap <C-w>' <C-\><C-N>:Files<CR>
 tnoremap <C-w><C-'> <C-\><C-N>:Files<CR>
 let g:fzf_action = {
-  \ 'ctrl-o': 'split',
-  \ 'ctrl-v': 'vsplit' }
+  \'ctrl-o': 'split',
+  \'ctrl-v': 'vsplit' }
 
 " Terminal settings
 tnoremap <C-w>: <C-\><C-N>:
@@ -85,6 +85,15 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  " ignore dotfiles by default
 let g:netrw_localrmdir = 'rm -r'
 
 " coc.nvim
+let g:coc_global_extensions = [
+  \'coc-css',
+  \'coc-eslint',
+  \'coc-json',
+  \'coc-pyright',
+  \'coc-tsserver',
+  \'@yaegassy/coc-marksman',
+\]
+
 set tagfunc=CocTagFunc
 
 xmap if <Plug>(coc-funcobj-i)
