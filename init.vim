@@ -52,6 +52,17 @@ set wildignore+=*.pyc "ignore pyc files
 
 set grepprg=rg\ --vimgrep\ --smart-case
 
+" vim-plug
+call plug#begin()
+
+Plug 'https://github.com/tpope/vim-sensible.git'
+Plug 'https://github.com/tpope/vim-vinegar.git'
+Plug 'https://github.com/lifepillar/vim-solarized8.git', { 'branch': 'neovim' }
+Plug 'https://github.com/junegunn/fzf.vim.git'
+Plug 'https://github.com/neoclide/coc.nvim.git', { 'branch': 'release' }
+
+call plug#end()
+
 " FZF settings
 source /usr/share/doc/fzf/examples/fzf.vim
 nnoremap <C-w>; :Buffers<CR>
