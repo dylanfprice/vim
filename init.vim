@@ -59,6 +59,7 @@ Plug 'https://github.com/lifepillar/vim-solarized8.git', { 'branch': 'neovim' }
 Plug 'https://github.com/junegunn/fzf.vim.git'
 Plug 'https://github.com/neoclide/coc.nvim.git', { 'branch': 'release' }
 Plug 'https://github.com/nvim-treesitter/nvim-treesitter.git',  {'do': ':TSUpdate'}
+Plug 'https://github.com/Olical/conjure.git'
 
 call plug#end()
 
@@ -181,6 +182,12 @@ EOF
 set foldmethod=expr
 set foldexpr=v:lua.vim.treesitter.foldexpr()
 set foldlevelstart=2
+
+" conjure
+let g:conjure#mapping#def_word = v:false
+let g:conjure#mapping#doc_word = v:false
+let g:conjure#completion#omnifunc = v:false
+let g:conjure#highlight#enabled = v:true
 
 " Autogenerate documentation tags
 silent! helptags ALL
