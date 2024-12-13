@@ -160,5 +160,4 @@ let g:python_highlight_space_errors = 0
 "" /Python
 
 " Autogenerate documentation tags
-packloadall
 silent! helptags ALL
