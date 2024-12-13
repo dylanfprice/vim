@@ -1,7 +1,7 @@
 " Change colorscheme
 set termguicolors
 set background=light
-colorscheme solarized8
+autocmd vimenter * ++nested colorscheme solarized8_flat
 
 " Allow setting syntax and stuff in modeline
 set modeline
@@ -60,6 +60,7 @@ Plug 'https://github.com/tpope/vim-vinegar.git'
 Plug 'https://github.com/lifepillar/vim-solarized8.git', { 'branch': 'neovim' }
 Plug 'https://github.com/junegunn/fzf.vim.git'
 Plug 'https://github.com/neoclide/coc.nvim.git', { 'branch': 'release' }
+Plug 'https://github.com/nvim-treesitter/nvim-treesitter.git',  {'do': ':TSUpdate'}
 
 call plug#end()
 
