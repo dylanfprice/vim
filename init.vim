@@ -63,6 +63,10 @@ Plug 'https://github.com/Olical/conjure.git'
 
 call plug#end()
 
+" leaders
+let mapleader = ","
+let maplocalleader = ","
+
 " FZF settings
 source /usr/share/doc/fzf/examples/fzf.vim
 nnoremap <C-w>; :Buffers<CR>
@@ -121,7 +125,7 @@ inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float
 vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 
-nnoremap <silent> gd :CocDiagnostics<CR>
+nnoremap <silent> <LocalLeader>d :CocDiagnostics<CR>
 
 nnoremap <silent> K :call ShowDocumentation()<CR>
 function! ShowDocumentation()
@@ -132,8 +136,7 @@ function! ShowDocumentation()
   endif
 endfunction
 
-
-nnoremap <silent><nowait> go :call ToggleOutline()<CR>
+nnoremap <silent><nowait> <LocalLeader>o :call ToggleOutline()<CR>
 function! ToggleOutline() abort
   let winid = coc#window#find('cocViewId', 'OUTLINE')
   if winid == -1
