@@ -1,4 +1,6 @@
-set tabstop=4
+" Use spaces instead of tabs
+set expandtab
+set shiftwidth=4
 
 " Change colorscheme
 set termguicolors
