@@ -149,9 +149,6 @@ command CocReferences
 
 autocmd BufWritePre *.py call CocAction('runCommand', 'pyright.organizeimports')
 
-" gutentags
-let g:gutentags_cache_dir = '~/.cache/gutentags'
-
 "" Python
 
 " python-syntax
