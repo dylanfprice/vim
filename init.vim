@@ -12,10 +12,6 @@ set modeline
 set wrap
 set linebreak
 
-" Automatically save and load folds
-au BufWinLeave * silent! mkview
-au BufWinEnter * silent! loadview
-
 " Don't abandon buffers when they are unloaded
 set hidden
 
@@ -150,6 +146,39 @@ command CocReferences
     \ :call CocActionAsync('jumpReferences')
 
 autocmd BufWritePre *.py call CocAction('runCommand', 'pyright.organizeimports')
+
+" nvim-treesitter
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = {
+    "clojure",
+    "javascript",
+    "json",
+    "lua",
+    "markdown",
+    "markdown_inline",
+    "python",
+    "query",
+    "typescript",
+    "vim",
+    "vimdoc",
+    "yaml",
+  },
+  sync_install = false,
+  auto_install = true,
+
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+  indent = {
+    enable = true
+  },
+}
+EOF
+set foldmethod=expr
+set foldexpr=v:lua.vim.treesitter.foldexpr()
+set foldlevelstart=2
 
 " Autogenerate documentation tags
 silent! helptags ALL
