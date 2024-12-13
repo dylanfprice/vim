@@ -1,3 +1,5 @@
+set tabstop=4
+
 " Change colorscheme
 set termguicolors
 set background=light
