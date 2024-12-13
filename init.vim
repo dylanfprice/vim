@@ -149,12 +149,5 @@ command CocReferences
 
 autocmd BufWritePre *.py call CocAction('runCommand', 'pyright.organizeimports')
 
-"" Python
-
-" python-syntax
-let g:python_highlight_space_errors = 0
-
-"" /Python
-
 " Autogenerate documentation tags
 silent! helptags ALL
