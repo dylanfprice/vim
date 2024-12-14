@@ -2,6 +2,10 @@
 set expandtab
 set shiftwidth=4
 
+" Autoread files when they change outside of vim
+set autoread
+autocmd BufEnter,FocusGained * checktime
+
 " Change colorscheme
 set termguicolors
 set background=light
