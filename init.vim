@@ -105,6 +105,7 @@ let g:netrw_localrmdir = 'rm -r'
 
 " coc.nvim
 let g:coc_global_extensions = [
+  \'coc-clojure',
   \'coc-css',
   \'coc-eslint',
   \'coc-json',
@@ -114,8 +115,8 @@ let g:coc_global_extensions = [
 \]
 
 autocmd FileType
-  \css,javascript,typescript,json,python,markdown
-  \setl formatexpr=CocAction('formatSelected')
+  \ css,javascript,typescript,json,python,markdown
+  \ setl formatexpr=CocAction('formatSelected')
 
 set tagfunc=CocTagFunc
 
