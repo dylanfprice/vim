@@ -113,6 +113,10 @@ let g:coc_global_extensions = [
   \'@yaegassy/coc-marksman',
 \]
 
+autocmd FileType
+  \css,javascript,typescript,json,python,markdown
+  \setl formatexpr=CocAction('formatSelected')
+
 set tagfunc=CocTagFunc
 
 xmap if <Plug>(coc-funcobj-i)
@@ -129,7 +133,9 @@ inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float
 vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 
-nnoremap <silent> <LocalLeader>d :CocDiagnostics<CR>
+nnoremap <silent> <leader>d :CocDiagnostics<CR>
+nmap <leader>rn <Plug>(coc-rename)
+nmap <silent> <leader>rf <Plug>(coc-references)
 
 nnoremap <silent> K :call ShowDocumentation()<CR>
 function! ShowDocumentation()
@@ -140,20 +146,20 @@ function! ShowDocumentation()
   endif
 endfunction
 
-nnoremap <silent><nowait> <LocalLeader>o :call ToggleOutline()<CR>
+nnoremap <silent><nowait> gO :call ToggleOutline()<CR>
 function! ToggleOutline() abort
   let winid = coc#window#find('cocViewId', 'OUTLINE')
-  if winid == -1
-    call CocActionAsync('showOutline')
-  else
+  if winid != -1
     call coc#window#close(winid)
   endif
+  if winid == -1
+    if CocAction('hasProvider', 'documentSymbol')
+      call CocActionAsync('showOutline')
+    else
+      call feedkeys('gO', 'in')
+    endif
+  endif
 endfunction
-
-command CocRename
-    \ :call CocActionAsync('rename')
-command CocReferences
-    \ :call CocActionAsync('jumpReferences')
 
 autocmd BufWritePre *.py call CocAction('runCommand', 'pyright.organizeimports')
 
