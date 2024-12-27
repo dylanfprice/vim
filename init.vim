@@ -64,6 +64,7 @@ Plug 'https://github.com/junegunn/fzf.vim.git'
 Plug 'https://github.com/neoclide/coc.nvim.git', { 'branch': 'release' }
 Plug 'https://github.com/nvim-treesitter/nvim-treesitter.git',  {'do': ':TSUpdate'}
 Plug 'https://github.com/Olical/conjure.git'
+Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 
 call plug#end()
 
