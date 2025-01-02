@@ -116,7 +116,7 @@ let g:coc_global_extensions = [
 \]
 
 autocmd FileType
-  \ css,javascript,typescript,json,python,markdown
+  \ clojure,css,javascript,typescript,json,python,markdown
   \ setl formatexpr=CocAction('formatSelected')
 
 set tagfunc=CocTagFunc
