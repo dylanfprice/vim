@@ -136,8 +136,10 @@ vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(
 vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 
 nnoremap <silent> <leader>d :CocDiagnostics<CR>
-nmap <leader>rn <Plug>(coc-rename)
-nmap <silent> <leader>rf <Plug>(coc-references)
+nnoremap <silent> ]d         <Plug>(coc-diagnostic-next)
+nnoremap <silent> [d         <Plug>(coc-diagnostic-prev)
+nnoremap <silent> <leader>rn <Plug>(coc-rename)
+nnoremap <silent> <leader>rf <Plug>(coc-references)
 
 nnoremap <silent> K :call ShowDocumentation()<CR>
 function! ShowDocumentation()
