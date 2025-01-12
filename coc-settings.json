@@ -7,6 +7,7 @@
     "diagnostic.level": "warning",
     "hover.target": "preview",
     "signature.hideOnTextChange": true,
+    "signature.preferShownAbove": false,
     "suggest.minTriggerInputLength": 3,
     "suggest.removeDuplicateItems": true,
     "list.insertMappings": {
