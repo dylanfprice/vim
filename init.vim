@@ -8,7 +8,7 @@ autocmd BufEnter,FocusGained * checktime
 
 " Change colorscheme
 set termguicolors
-set background=dark
+set background=light
 autocmd vimenter * ++nested colorscheme solarized8_flat
 
 " Allow setting syntax and stuff in modeline
