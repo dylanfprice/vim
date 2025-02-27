@@ -64,7 +64,8 @@ Plug 'https://github.com/junegunn/fzf.vim.git'
 Plug 'https://github.com/neoclide/coc.nvim.git', { 'branch': 'release' }
 Plug 'https://github.com/nvim-treesitter/nvim-treesitter.git',  {'do': ':TSUpdate'}
 Plug 'https://github.com/Olical/conjure.git'
-Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
+Plug 'https://github.com/eraserhd/parinfer-rust.git', {'do': 'cargo build --release'}
+Plug 'https://github.com/4e554c4c/darkman.nvim.git', {'do': 'go build -o bin/darkman.nvim'}
 
 call plug#end()
 
@@ -193,6 +194,13 @@ let g:conjure#mapping#def_word = v:false
 let g:conjure#mapping#doc_word = v:false
 let g:conjure#completion#omnifunc = v:false
 let g:conjure#highlight#enabled = v:true
+
+" darkman.nvim
+lua << EOF
+require"darkman".setup {
+  change_background = true
+}
+EOF
 
 " Autogenerate documentation tags
 silent! helptags ALL
