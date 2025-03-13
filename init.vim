@@ -187,6 +187,7 @@ set foldmethod=expr
 set foldexpr=v:lua.vim.treesitter.foldexpr()
 set foldlevelstart=2
 autocmd FileType * highlight! link @variable Normal
+autocmd OptionSet background highlight! link @variable Normal
 
 
 " conjure
