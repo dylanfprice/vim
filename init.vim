@@ -166,8 +166,6 @@ function! ToggleOutline() abort
   endif
 endfunction
 
-autocmd BufWritePre *.py call CocAction('runCommand', 'pyright.organizeimports')
-
 " nvim-treesitter
 lua << EOF
 require"nvim-treesitter.configs".setup {
